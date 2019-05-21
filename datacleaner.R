@@ -7,7 +7,8 @@ ClimateData<-na.omit(ClimateData)
 HarvestData<-na.omit(HarvestData)
 
 colnames(ClimateData)
-
+View(ClimateData)
+View(HarvestData)
 HarvestData$row<-as.numeric(HarvestData$row_number)
 HarvestData$plantnr<-as.numeric(HarvestData$plant_number)
 HarvestData$date<-as.numeric(HarvestData$date)
@@ -24,7 +25,7 @@ HarvestData$fruit_number<-NULL
 HarvestData$row_number<-NULL
 print("Climate Data cleaned up.")
 ####
-ClimateData$datum<-as.POSIXlt(as.character(ClimateData$datum))
+ClimateData$date<-as.POSIXlt(as.character(ClimateData$datum))
 ClimateData$ger1 <-as.numeric(ClimateData$ger1)
 ClimateData$ger2<-as.numeric(ClimateData$ger2)
 ClimateData$stralingssom<-as.numeric(ClimateData$stralingssom)
