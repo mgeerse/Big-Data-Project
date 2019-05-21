@@ -2,56 +2,56 @@
 
 # Data typen toewijzen voor ClimateData en HarvestData
 ####
+# NA's verwijderen
+ClimateData<-na.omit(ClimateData)
+HarvestData<-na.omit(HarvestData)
 
-View(ClimateData)
+HarvestData$row<-as.numeric(HarvestData$row_number)
+HarvestData$plantnr<-as.numeric(HarvestData$plant_number)
+HarvestData$date<-as.numeric(HarvestData$date)
+HarvestData$trussnumber<-as.numeric(HarvestData$truss_number)
+HarvestData$brix<-as.numeric(HarvestData$brix)
+HarvestData$diameter<-as.numeric(HarvestData$diameter)
+HarvestData$fruitnumber<-as.numeric(HarvestData$fruit_number)
+HarvestData$weight<-as.numeric(HarvestData$weight)
 
-ClimateData$row<-as.numeric(ClimateData$row_number)
-ClimateData$plantnr<-as.numeric(ClimateData$plant_number)
-ClimateData$date<-as.numeric(ClimateData$date)
-ClimateData$trussnumber<-as.numeric(ClimateData$truss_number)
-ClimateData$brix<-as.numeric(ClimateData$brix)
-ClimateData$diameter<-as.numeric(ClimateData$diameter)
-ClimateData$fruitnumber<-as.numeric(ClimateData$fruit_number)
-ClimateData$weight<-as.numeric(ClimateData$weight)
-
-ClimateData$row_number<-NULL
-ClimateData$plant_number<-NULL
-ClimateData$truss_number<-NULL
-ClimateData$fruit_number<-NULL
-ClimateData$row_number<-NULL
+HarvestData$row_number<-NULL
+HarvestData$plant_number<-NULL
+HarvestData$truss_number<-NULL
+HarvestData$fruit_number<-NULL
+HarvestData$row_number<-NULL
 print("Climate Data cleaned up.")
 ####
-View(HarvestData)
-HarvestData$datum.1<-as.POSIXlt(as.character(HarvestData$datum.1))
-HarvestData$ger1 <-as.numeric(HarvestData$ger1)
-HarvestData$ger2<-as.numeric(HarvestData$ger2)
-HarvestData$stralingssom<-as.numeric(HarvestData$stralingssom)
-HarvestData$straling<-as.numeric(HarvestData$straling)
-HarvestData$datum2<-as.date(as.POSIXlt(HarvestData$datum2))
-HarvestData$gem_kastemp<-as.numeric(HarvestData$gem_kastemp)
-HarvestData$gem_RV<-as.numeric(HarvestData$gem_RV)
-HarvestData$ber_verw_t<-as.numeric(HarvestData$ber_verw_t )
-HarvestData$ber_vent_t_l<-as.numeric(HarvestData$ber_vent_t_l)
-HarvestData$ber_buis<-as.numeric(HarvestData$ber_buis)
-HarvestData$gem_doek_1<-as.numeric(HarvestData$gem_doek_1)
-HarvestData$gem_doek_2<-as.numeric(HarvestData$gem_doek_2)
-HarvestData$gem_doek_3<-as.numeric(HarvestData$gem_doek_3)
-HarvestData$ber_RV<-as.numeric(HarvestData$ber_RV)
-HarvestData$gem_CO2_conc<-as.numeric(HarvestData$gem_CO2_conc)
-HarvestData$gem_luw<-as.numeric(HarvestData$gem_luw)
-HarvestData$gem_wind<-as.numeric(HarvestData$ gem_wind)
-HarvestData$gem_VD<-as.numeric(HarvestData$gem_VD)
-HarvestData$straling_2<-as.numeric(HarvestData$straling_2)
-HarvestData$datum_3<-as.POSIXlt(as.character(HarvestData$datum_3))
-HarvestData$gem_buis_2<-as.numeric(HarvestData$ gem_buis_2)
-HarvestData$ber_buis.1<-as.numeric(HarvestData$ber_buis.1)
-HarvestData$gem_kastemp.1<-as.numeric(HarvestData$gem_kastemp.1)
-HarvestData$gem_RV.1<-as.numeric(HarvestData$gem_RV.1)
-HarvestData$ger_toestand<-as.numeric(HarvestData$ger_toestand)
-HarvestData$ger_toestand.1<-as.numeric(HarvestData$ger_toestand.1)
-HarvestData$stralingssom_2<-as.numeric(HarvestData$stralingssom_2)
-HarvestData$straling_3<-as.numeric(HarvestData$straling_3)
-HarvestData$gem_plant_2<-as.numeric(HarvestData$gem_plant_2)
-HarvestData$gem_plant_3<-as.numeric(HarvestData$gem_plant_3)
+ClimateData$datum.1<-as.POSIXlt(as.character(ClimateData$datum.1))
+ClimateData$ger1 <-as.numeric(ClimateData$ger1)
+ClimateData$ger2<-as.numeric(ClimateData$ger2)
+ClimateData$stralingssom<-as.numeric(ClimateData$stralingssom)
+ClimateData$straling<-as.numeric(ClimateData$straling)
+ClimateData$datum2<-as.date(as.POSIXlt(ClimateData$datum2))
+ClimateData$gem_kastemp<-as.numeric(ClimateData$gem_kastemp)
+ClimateData$gem_RV<-as.numeric(ClimateData$gem_RV)
+ClimateData$ber_verw_t<-as.numeric(ClimateData$ber_verw_t )
+ClimateData$ber_vent_t_l<-as.numeric(ClimateData$ber_vent_t_l)
+ClimateData$ber_buis<-as.numeric(ClimateData$ber_buis)
+ClimateData$gem_doek_1<-as.numeric(ClimateData$gem_doek_1)
+ClimateData$gem_doek_2<-as.numeric(ClimateData$gem_doek_2)
+ClimateData$gem_doek_3<-as.numeric(ClimateData$gem_doek_3)
+ClimateData$ber_RV<-as.numeric(ClimateData$ber_RV)
+ClimateData$gem_CO2_conc<-as.numeric(ClimateData$gem_CO2_conc)
+ClimateData$gem_luw<-as.numeric(ClimateData$gem_luw)
+ClimateData$gem_wind<-as.numeric(ClimateData$ gem_wind)
+ClimateData$gem_VD<-as.numeric(ClimateData$gem_VD)
+ClimateData$straling_2<-as.numeric(ClimateData$straling_2)
+ClimateData$datum_3<-as.POSIXlt(as.character(ClimateData$datum_3))
+ClimateData$gem_buis_2<-as.numeric(ClimateData$ gem_buis_2)
+ClimateData$ber_buis.1<-as.numeric(ClimateData$ber_buis.1)
+ClimateData$gem_kastemp.1<-as.numeric(ClimateData$gem_kastemp.1)
+ClimateData$gem_RV.1<-as.numeric(ClimateData$gem_RV.1)
+ClimateData$ger_toestand<-as.numeric(ClimateData$ger_toestand)
+ClimateData$ger_toestand.1<-as.numeric(ClimateData$ger_toestand.1)
+ClimateData$stralingssom_2<-as.numeric(ClimateData$stralingssom_2)
+ClimateData$straling_3<-as.numeric(ClimateData$straling_3)
+ClimateData$gem_plant_2<-as.numeric(ClimateData$gem_plant_2)
+ClimateData$gem_plant_3<-as.numeric(ClimateData$gem_plant_3)
 print("Harvest Data cleaned up.")
 ####
