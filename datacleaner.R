@@ -24,7 +24,7 @@ HarvestData$fruit_number<-NULL
 HarvestData$row_number<-NULL
 print("Climate Data cleaned up.")
 ####
-ClimateData$datum<-as.Date(ClimateData$datum,format='%d-%m-%Y')
+ClimateData$date<-as.Date(ClimateData$datum,format='%d-%m-%Y')
 ClimateData$ger1 <-as.numeric(ClimateData$ger1)
 ClimateData$ger2<-as.numeric(ClimateData$ger2)
 ClimateData$stralingssom<-as.numeric(ClimateData$stralingssom)
