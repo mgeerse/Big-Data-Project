@@ -7,11 +7,10 @@ ClimateData<-na.omit(ClimateData)
 HarvestData<-na.omit(HarvestData)
 
 colnames(ClimateData)
-View(ClimateData)
-View(HarvestData)
+
 HarvestData$row<-as.numeric(HarvestData$row_number)
 HarvestData$plantnr<-as.numeric(HarvestData$plant_number)
-HarvestData$date<-as.numeric(HarvestData$date)
+HarvestData$date<-as.Date(HarvestData$date,format='%Y-%m-%d')
 HarvestData$trussnumber<-as.numeric(HarvestData$truss_number)
 HarvestData$brix<-as.numeric(HarvestData$brix)
 HarvestData$diameter<-as.numeric(HarvestData$diameter)
@@ -25,7 +24,7 @@ HarvestData$fruit_number<-NULL
 HarvestData$row_number<-NULL
 print("Climate Data cleaned up.")
 ####
-ClimateData$date<-as.POSIXlt(as.character(ClimateData$datum))
+ClimateData$datum<-as.Date(ClimateData$datum,format='%d-%m-%Y')
 ClimateData$ger1 <-as.numeric(ClimateData$ger1)
 ClimateData$ger2<-as.numeric(ClimateData$ger2)
 ClimateData$stralingssom<-as.numeric(ClimateData$stralingssom)
@@ -55,4 +54,3 @@ ClimateData$straling_3<-as.numeric(ClimateData$straling_3)
 ClimateData$gem_plant_2<-as.numeric(ClimateData$gem_plant_2)
 ClimateData$gem_plant_3<-as.numeric(ClimateData$gem_plant_3)
 print("Harvest Data cleaned up.")
-####
