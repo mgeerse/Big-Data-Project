@@ -1,6 +1,6 @@
 # Custom
-./main.R
-./workspace.RData
+main.R
+workspace.RData
 
 # History files
 .Rhistory
