@@ -3,8 +3,9 @@
 # Data typen toewijzen voor ClimateData en HarvestData
 ####
 # NA's verwijderen
-ClimateData<-na.omit(ClimateData)
-HarvestData<-na.omit(HarvestData)
+#ClimateData<-na.omit(ClimateData)
+#HarvestData<-na.omit(HarvestData)
+options(digits=9)
 
 colnames(ClimateData)
 
@@ -27,9 +28,9 @@ print("Climate Data cleaned up.")
 ClimateData$date<-as.Date(ClimateData$datum,format='%d-%m-%Y')
 ClimateData$ger1 <-as.numeric(ClimateData$ger1)
 ClimateData$ger2<-as.numeric(ClimateData$ger2)
-ClimateData$stralingssom<-as.numeric(ClimateData$stralingssom)
+ClimateData$stralingssom<-as.character(ClimateData$stralingssom)
 ClimateData$straling<-as.numeric(ClimateData$straling)
-ClimateData$gem_kastemp<-as.numeric(ClimateData$gem_kastemp)
+ClimateData$gem_kastemp<-as.numeric(ClimateData$ gem_kastemp)
 ClimateData$gem_RV<-as.numeric(ClimateData$gem_RV)
 ClimateData$ber_verw_t<-as.numeric(ClimateData$ber_verw_t )
 ClimateData$ber_vent_t_l<-as.numeric(ClimateData$ber_vent_t_l)
@@ -43,7 +44,7 @@ ClimateData$gem_luw<-as.numeric(ClimateData$gem_luw)
 ClimateData$gem_wind<-as.numeric(ClimateData$ gem_wind)
 ClimateData$gem_VD<-as.numeric(ClimateData$gem_VD)
 ClimateData$straling_2<-as.numeric(ClimateData$straling_2)
-ClimateData$gem_buis_2<-as.numeric(ClimateData$ gem_buis_2)
+ClimateData$gem_buis_2<-as.numeric(ClimateData$gem_buis_2)
 ClimateData$ber_buis.1<-as.numeric(ClimateData$ber_buis.1)
 ClimateData$gem_kastemp.1<-as.numeric(ClimateData$gem_kastemp.1)
 ClimateData$gem_RV.1<-as.numeric(ClimateData$gem_RV.1)
