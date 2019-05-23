@@ -1,7 +1,12 @@
 rm(list=ls(all=TRUE))
 library(foreign)
 
+### Method toggles ###
+# Add a toggle for each test (so they can easily be executed without having to remove/comment code)
 runDataCleaner <- TRUE;
+
+### -------------- ###
+
 
 # Main script file.
 # This script should be the only place to run from.
@@ -15,10 +20,7 @@ source("usersettings.R")
 source("inladen.R")
 
 # Clean the data.
-if(runDataCleaner)
-{
-  source("datacleaner.R")
-}
+if(runDataCleaner){ source("datacleaner.R") }
 
 # Merge the data
 source("merge.R")
