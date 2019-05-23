@@ -11,7 +11,7 @@ runDataCleaner <- TRUE;
 # Main script file.
 # This script should be the only place to run from.
 # The first step for any user is to set the working directory below:
-setwd("")
+source("projectSettings.R")
 
 # Load in the user settings.
 source("usersettings.R")
