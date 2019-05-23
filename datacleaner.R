@@ -1,14 +1,7 @@
 # This file serves to lcean the data from the harvestdatafile and from the climatedatafile.
-
-# Data typen toewijzen voor ClimateData en HarvestData
-####
-# NA's verwijderen
-#ClimateData<-na.omit(ClimateData)
-#HarvestData<-na.omit(HarvestData)
 options(digits=9)
 
-colnames(ClimateData)
-
+# Assign datatypes to ClimateData and HarvestData
 HarvestData$row<-as.numeric(HarvestData$row_number)
 HarvestData$plantnr<-as.numeric(HarvestData$plant_number)
 HarvestData$date<-as.Date(HarvestData$date,format='%Y-%m-%d')
@@ -23,7 +16,7 @@ HarvestData$truss_number<-NULL
 HarvestData$fruit_number<-NULL
 HarvestData$row_number<-NULL
 print("Harvest Data cleaned up.")
-
+#
 ClimateData$date<-as.Date(ClimateData$datum,format='%d-%m-%Y')
 ClimateData$ger1 <-as.numeric(ClimateData$ger1)
 ClimateData$ger2<-as.numeric(ClimateData$ger2)
@@ -54,3 +47,4 @@ ClimateData$straling_3<-as.numeric(ClimateData$straling_3)
 ClimateData$gem_plant_2<-as.numeric(ClimateData$gem_plant_2)
 ClimateData$gem_plant_3<-as.numeric(ClimateData$gem_plant_3)
 print("Climate Data cleaned up.")
+#

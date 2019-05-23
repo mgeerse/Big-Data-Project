@@ -1,29 +1,27 @@
+# Main script file.
+# This script should be the only place to run from.
+# To start fresh, start from the line below:
 rm(list=ls(all=TRUE))
 library(foreign)
 
-### Method toggles ###
-# Add a toggle for each test (so they can easily be executed without having to remove/comment code)
-runDataCleaner <- TRUE;
-
-### -------------- ###
-
-
-# Main script file.
-# This script should be the only place to run from.
-# The first step for any user is to set the working directory below:
+# Zet in de lijst hieronder je WD als je wilt, scheelt met pulls van de remote:
+# Maarten - desktop: setwd("C:\\Users\\mgeer\\Documents\\Git\\Big-Data-Project")
+# Maarten - laptop: setwd("C:\\Users\\Maarten\\Documents\\Git\\Big-Data-Project")
 setwd("")
 
-# Load in the user settings.
-source("usersettings.R")
+# Load in the projectsettings.
+source("projectSettings.R")
 
 # Load in the data
-source("inladen.R")
+source("dataLoader.R")
 
 # Clean the data.
-if(runDataCleaner){ source("datacleaner.R") }
+source("dataCleaner.R") 
+
+# Sandbox; use this file to test your own softwarecode.
+source("sandbox.R")
 
 # Merge the data
-source("merge.R")
+source("dataMerger.R")
 
-# Perform magic
-
+# Success bois
