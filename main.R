@@ -17,8 +17,9 @@ source("customFunctions.R")
 # Load in the data
 source("dataLoader.R")
 
-# Clean and aggregrate the data.
+# Clean and aggregrate Harvest- and ClimateData.
 source("dataCleaner.R") 
+source("dataAggregator.R")
 
 # Sandbox; use this file to test your own softwarecode.
 source("sandbox.R")

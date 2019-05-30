@@ -16,6 +16,7 @@ HarvestData$truss_number<-NULL
 HarvestData$fruit_number<-NULL
 HarvestData$row_number<-NULL
 print("Harvest Data cleaned up.")
+
 #
 ClimateData$date<-as.Date(ClimateData$datum,format='%d-%m-%Y')
 ClimateData$ger1 <-as.numeric(as.character(gsub(",",".",ClimateData$ger1)))
