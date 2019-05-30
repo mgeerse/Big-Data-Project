@@ -1,4 +1,4 @@
-#Harvest- and ClimateData Aggregator.
+# Harvest- and ClimateData Aggregator.
 
 print("Aggregating ClimateData")
 ClimateDataAggregated<-aggregate(x = ClimateData[c("ger1","ger2","stralingssom","straling","gem_kastemp","gem_RV","ber_verw_t","ber_vent_t_l","ber_buis","gem_buis",

@@ -5,5 +5,3 @@ MeanNoNA<-function(x){
 	x<-na.omit(x)
 	(mean(x))
 }
-
-
