@@ -5,31 +5,24 @@ rm(list=ls(all=TRUE))
 library(foreign)
 
 # Zet in de lijst hieronder je WD als je wilt, scheelt met pulls van de remote:
-setwd("C:\\Users\\user\\Desktop\\R programming")
+# Maarten - desktop: setwd("C:\\Users\\mgeer\\Documents\\Git\\Big-Data-Project")
+# Maarten - laptop: setwd("C:\\Users\\Maarten\\Documents\\Git\\Big-Data-Project")
+# Ercan - laptop: setwd("C:\\Users\\user\\Desktop\\R programming")
+setwd("C:\\Users\\mgeer\\Documents\\Git\\Big-Data-Project")
+
 
 # Load in the projectsettings.
 source("projectSettings.R")
+source("customFunctions.R")
 
 # Load in the data
 source("dataLoader.R")
 
 View(ClimateData)
 
-# Clean the data.
+# Clean and aggregrate the data.
 source("dataCleaner.R") 
 
-View(test)
-
-tjeerd<-function(x){
-x<-na.omit(x)
-return(mean(x))
-}
-
-
-test<-aggregate(x = ClimateData[c("ger1","ger2","stralingssom","straling","gem_kastemp","gem_RV","ber_verw_t","ber_vent_t_l","ber_buis","gem_buis",
-"gem_doek_1","gem_doek_2","gem_doek_3","ber_RV","gem_CO2_conc","gem_luw","gem_wind","gem_VD","straling_2","gem_buis_2","ber_buis","gem_kastemp","gem_RV","ger_toestand","ger_toestand.1",
-"stralingssom_2","straling_3","gem_plant_2","gem_plant_3")],
-    FUN =tjeerd,by = list(Group.date = ClimateData$date))
 
 warnings()
 
