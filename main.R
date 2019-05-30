@@ -10,7 +10,6 @@ library(foreign)
 # Ercan - laptop: setwd("C:\\Users\\user\\Desktop\\R programming")
 setwd("C:\\Users\\mgeer\\Documents\\Git\\Big-Data-Project")
 
-
 # Load in the projectsettings.
 source("projectSettings.R")
 source("customFunctions.R")
@@ -18,17 +17,8 @@ source("customFunctions.R")
 # Load in the data
 source("dataLoader.R")
 
-View(ClimateData)
-
 # Clean and aggregrate the data.
 source("dataCleaner.R") 
-
-
-warnings()
-
-View(ClimateData)
-
-View(test)
 
 # Sandbox; use this file to test your own softwarecode.
 source("sandbox.R")
