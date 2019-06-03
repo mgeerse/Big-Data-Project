@@ -1,12 +1,12 @@
 # Projectsettings file.
 
 # Custom packages to install:
-install.packages("lubridate")
-install.packages("ggplot2")
-install.packages("dplyr")
-install.packages("tidyr")
-install.packages("tidyverse")
-install.packages("padr")
+install.packages("lubridate",repos="https://cran.hafro.is/")
+install.packages("ggplot2",repos="https://cran.hafro.is/")
+install.packages("dplyr",repos="https://cran.hafro.is/")
+install.packages("tidyr",repos="https://cran.hafro.is/")
+install.packages("tidyverse",repos="https://cran.hafro.is/")
+install.packages("padr",repos="https://cran.hafro.is/")
 
 # load packages
 library(foreign)
