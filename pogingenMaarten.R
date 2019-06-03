@@ -9,46 +9,56 @@ View(HarvestDataAggregated)
 View(ClimateDataAggregated)
 HarvestDataAggregated
 
-
-
-
-######hier
-
-
-for(rownr in 1:nrow(HarvestDataAggregated)){
-
-
-
-}
-
-
-######tothier
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+View(HarvestData)
 
 #dagen waarop metingen zijn gedaan
 meting_dagen<-unique(HarvestDataAggregated$date)
 View(meting_dagen)
+
+# Maak een lijst van alle data tussen begin en eind van metingen
+date_list<-seq(min(HarvestDataAggregated$date), max(HarvestDataAggregated$date), by = '1 day')
+View(date_list)
+date_list<-unique(date_list, HarvestDataAggregated$date)
+View(date_list)
+class(date_list)
+
+merged<-merge(ClimateDataWeekly, HarvestDataAggregated, by.ClimateDataWeekly="date", by.HarvestDataAggregated="date")
+
+View(ClimateDataWeekly)
+View(HarvestDataAggregated)
+View(merged)
+class(merged)
+
+agg<-aggregate(x = crossed, by=list(dateclimate = crossed$date, dateharvest = crossed$date1), FUN = MeanNoNA)
+View(agg)
+
+
+ClimateDataWeekly$date<-NULL
+crossed<-crossing(ClimateDataWeekly, HarvestDataAggregated)
+crossed<-unique(crossed)
+duplicated(crossed)
+View(crossed)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 df<-data.frame("date" = date(0), "plantnr" = integer(0))
 names(df)<-names(HarvestDataAggregated)
@@ -101,12 +111,7 @@ newdf$date<-HarvestDataAggregated[rownr, ]$date
 }
 
 
-# Maak een lijst van alle data tussen begin en eind van metingen
-date_list<-seq(min(HarvestDataAggregated$date), max(HarvestDataAggregated$date), by = '1 day')
-View(date_list)
-date_list<-unique(date_list, HarvestDataAggregated$date)
-View(date_list)
-class(date_list)
+
 
 appeneded<-append(date_list, uniques)
 View(appended)
