@@ -10,9 +10,13 @@ print("Done.")
 
 print("Aggregating HarvestData")
 HarvestDataAggregated<-aggregate(x = HarvestData[c("row", "brix", "weight", "diameter", "total_sap")],
-    FUN = MeanNoNA, by = list(date = HarvestData$date))
+    FUN = MeanNoNA, by = list(date = HarvestData$date, plantnr = HarvestData$plantnr))
 print("Done.")
 #
+
+HarvestDataAggregatedWeekly<-aggregate(x = HarvestData[c("row", "brix", "weight", "diameter", "total_sap")],
+    FUN = MeanNoNA, by = list(date = HarvestData$date))
+print("Done.")
 
 ClimateDataWeekly <- ClimateDataAggregated  %>%
     mutate(date = floor_date(ymd(date), unit = "weeks")) %>%
