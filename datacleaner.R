@@ -1,4 +1,4 @@
-# This file serves to lcean the data from the harvestdatafile and from the climatedatafile.
+# This file serves to clean the data.
 options(digits=9)
 
 # Assign datatypes to HarvestData
@@ -23,17 +23,17 @@ print("HarvestData cleaned up.")
 
 # Assign datatypes to ClimateData
 ClimateData$date<-as.Date(ClimateData$date,format='%d-%m-%Y')
-("ClimateData cleaned up.")
+print("ClimateData cleaned up.")
 
 # Assign datatypes to ClimateDataPerDay
 ClimateDataPerDay$date<-as.Date(as.character(ClimateDataPerDay$date),format='%d-%m-%Y')
-("ClimateData cleaned up.")
+print("ClimateData cleaned up.")
 
 # Assign datatypes to IrrigationData1
 IrrigationData1$date<-as.Date(as.character(IrrigationData1$date),format='%d-%m-%Y')
-("IrrigationData1 cleaned up.")
+print("IrrigationData1 cleaned up.")
 
 # Assign datatypes to IrrigationData2
 IrrigationData2$date<-as.Date(as.character(IrrigationData2$date),format='%d-%m-%Y')
-("IrrigationData2 cleaned up.")
+print("IrrigationData2 cleaned up.")
 
