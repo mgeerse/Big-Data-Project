@@ -14,7 +14,7 @@ install.packages("rpart.plot",repos="https://cran.hafro.is/")
 install.packages("randomForest",repos="https://cran.hafro.is/")
 install.packages("nnet",repos="https://cran.hafro.is/")
 
-# load packages
+# Load in packages
 library(foreign)
 library(dplyr)
 library(tidyr)
@@ -30,6 +30,11 @@ library(randomForest)
 library(nnet)
 
 # Set this to climatedata file name
-climatedatafile<-"klimaatdata1.csv"
+climatedatafile<-"climatedata.csv"
+
+# Irrigation system files
+irrigation_system_1<-"irrigationsystem1.csv"
+irrigation_system_2<-"irrigationsystem2.csv"
+
 # Set this to harvestdata file name
-harvestdatafile<-"reformatted_data_with_sap_1.csv"
+harvestdatafile<-"harvestdata.csv"
