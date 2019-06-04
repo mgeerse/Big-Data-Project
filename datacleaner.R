@@ -23,7 +23,6 @@ print("HarvestData cleaned up.")
 
 # Assign datatypes to ClimateData
 ClimateData$date<-as.Date(ClimateData$date,format='%d-%m-%Y')
-ClimateData$truss<-as.numeric(ClimateData$Truss.number)
 ("ClimateData cleaned up.")
 
 # Assign datatypes to ClimateDataPerDay
