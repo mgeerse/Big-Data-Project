@@ -7,8 +7,8 @@ rm(list=ls(all=TRUE))
 # Maarten - desktop: setwd("C:\\Users\\mgeer\\Documents\\Git\\Big-Data-Project")
 # Maarten - laptop: setwd("C:\\Users\\Maarten\\Documents\\Git\\Big-Data-Project")
 # Ercan - laptop: setwd("C:\\Users\\user\\Desktop\\R programming")
-# Jacco - Laptop: setwd("D:\\documenten\\Bigdata\\Big-Data-Project")
-setwd("")
+# Jacco - Laptop: setwd("D:\documenten\Bigdata\Big-Data-Project")
+setwd("C:\\Users\\mgeer\\Documents\\Git\\Big-Data-Project")
 
 # Load in the projectsettings.
 source("projectSettings.R")
