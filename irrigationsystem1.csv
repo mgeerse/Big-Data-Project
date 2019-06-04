@@ -1,5 +1,4 @@
-﻿;gave water;;;;;;;drain water;;;;
-Date;Ave_24h_ValveEC of gave (water mS/cm);Ave_24h_ValveFlow (m3/h);Ave_24h_ValvepH;Sum_24h_Valve/m2(liters water per/m2);Sum_24h_ValveDeviation;Sum_24h_ValvePerUnit(total liters per day);Sum_24h_ValveUse;drain percentage %;EC;pH;drain water amount;absorb water amount
+﻿Date;Ave_24h_ValveEC of gave (water mS/cm);Ave_24h_ValveFlow (m3/h);Ave_24h_ValvepH;Sum_24h_Valve/m2(liters water per/m2);Sum_24h_ValveDeviation;Sum_24h_ValvePerUnit(total liters per day);Sum_24h_ValveUse;drain percentage %;EC;pH;drain water amount;absorb water amount
 31-12-2018;3,1;0,4;5,6;0,117;5;104,2;20;;;;;
 1-1-2019;3,1;0,45;5,6;0,236;11;208,3;40;0;7,6;6,9;0;0,236
 2-1-2019;3,4;0,4;5,5;0,576;6;510,4;98;0;7,6;6,9;0;0,576
