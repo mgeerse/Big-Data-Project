@@ -31,6 +31,7 @@ library(nnet)
 
 # Set this to climatedata file name
 climatedatafile<-"climatedata.csv"
+climatedataperdayfile<-"climatedataperday.csv"
 
 # Irrigation system files
 irrigation_system_1<-"irrigationsystem1.csv"

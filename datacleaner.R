@@ -26,6 +26,10 @@ ClimateData$date<-as.Date(ClimateData$date,format='%d-%m-%Y')
 ClimateData$truss<-as.numeric(ClimateData$Truss.number)
 ("ClimateData cleaned up.")
 
+# Assign datatypes to ClimateDataPerDay
+ClimateDataPerDay$date<-as.Date(as.character(ClimateDataPerDay$date),format='%d-%m-%Y')
+("ClimateData cleaned up.")
+
 # Assign datatypes to IrrigationData1
 IrrigationData1$date<-as.Date(as.character(IrrigationData1$date),format='%d-%m-%Y')
 ("IrrigationData1 cleaned up.")
