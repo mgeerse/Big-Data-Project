@@ -3,6 +3,9 @@
 ClimateData<-read.csv(climatedatafile, header = TRUE, dec = ",", fill=TRUE, sep=";", stringsAsFactors = FALSE, fileEncoding="UTF-8-BOM")
 print("ClimateData loaded in.")
 
+ClimateDataPerDay<-read.csv(climatedataperdayfile, header = TRUE, dec = ",", fill=TRUE, sep=";", stringsAsFactors = FALSE, fileEncoding="UTF-8-BOM")
+print("ClimateDataPerDay loaded in.")
+
 HarvestData<-read.csv(harvestdatafile, header = TRUE, dec = ",", fill = FALSE, sep=";", stringsAsFactors = FALSE, fileEncoding="UTF-8-BOM")
 print("HarvestData loaded in.")
 
