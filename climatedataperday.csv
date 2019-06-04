@@ -1,7 +1,4 @@
-﻿;room temperature inside;air humidity;CO2 amount;radiation outside;plant temperature big (gutter 3 +gutter 5);plant temperature small (gutter 4 +gutter 6)
-;gem kastemp;gem RV;gem CO2/conc;straling;gem plant 2;gem plant 3
-;DEMO1:Afd 180;DEMO1:Afd 180;DEMO1:CO2/DOSERING 180;DEMO1:METEO STRAL. OPN.;DEMO1:AFD 180 MEETBOX 2;DEMO1:AFD 180 MEETBOX 3
-;Â°C;%;ppm;W/mÂ²;Â°C;Â°C
+﻿date;room temperature inside;air humidity;CO2 amount;radiation outside;plant temperature big;plant temperature small
 1-1-2019 00:00;17;79;446,67;0;;23,2
 2-1-2019 00:00;16;69,17;406,5;0;;23,2
 3-1-2019 00:00;15,98;69;459,33;0;;23,2
