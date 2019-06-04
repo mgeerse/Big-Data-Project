@@ -19,8 +19,8 @@ source("dataLoader.R")
 
 # Clean and aggregrate Harvest- and ClimateData.
 source("dataCleaner.R") 
-source("dataAggregator.R")
-source("dataSubstitutor.R")
+#source("dataAggregator.R")
+#source("dataSubstitutor.R")
 
 # Sandbox; use this file to test your own softwarecode.
 source("sandbox.R")
