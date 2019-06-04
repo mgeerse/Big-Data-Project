@@ -2,19 +2,23 @@
 options(digits=9)
 
 # Assign datatypes to ClimateData and HarvestData
-HarvestData$row<-as.numeric(HarvestData$row_number)
-HarvestData$plantnr<-as.numeric(HarvestData$plant_number)
-HarvestData$date<-as.Date(HarvestData$date,format='%Y-%m-%d')
-HarvestData$trussnumber<-as.numeric(HarvestData$truss_number)
-HarvestData$brix<-as.numeric(HarvestData$brix)
-HarvestData$diameter<-as.numeric(HarvestData$diameter)
-HarvestData$fruitnumber<-as.numeric(HarvestData$fruit_number)
-HarvestData$weight<-as.numeric(HarvestData$weight)
+HarvestData$plant<-as.numeric(HarvestData$Plant.number)
+HarvestData$date<-as.Date(HarvestData$date,format='%d/%m/%Y')
+HarvestData$truss<-as.numeric(HarvestData$Truss.number)
+HarvestData$brix<-as.numeric(HarvestData$Brix..Number.)
+HarvestData$diameter<-as.numeric(HarvestData$Diameter.of.fruits..mm.)
+HarvestData$fruits<-as.numeric(HarvestData$Number.of.fruits..Number.)
+HarvestData$weightperfruit<-as.numeric(HarvestData$Weight.per.fruit..gr.)
+HarvestData$freshweight<-as.numeric(HarvestData$Fresh.weight..gr.)
 HarvestData$row_number<-NULL
-HarvestData$plant_number<-NULL
-HarvestData$truss_number<-NULL
-HarvestData$fruit_number<-NULL
-HarvestData$row_number<-NULL
+HarvestData$Plant.number<-NULL
+HarvestData$Truss.number<-NULL
+HarvestData$Brix..Number.<-NULL
+HarvestData$Diameter.of.fruits..mm.<-NULL
+HarvestData$Number.of.fruits..Number.<-NULL
+HarvestData$Weight.per.fruit..gr.<-NULL
+HarvestData$Fresh.weight..gr.<-NULL
+
 print("Harvest Data cleaned up.")
 
 #
