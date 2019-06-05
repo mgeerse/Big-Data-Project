@@ -1,18 +1,26 @@
-HarvestData$soort<-NULL
-HarvestData$soort[HarvestData$plantnr>=300&HarvestData$plantnr<=311]<-1
-HarvestData$soort[HarvestData$plantnr>=400&HarvestData$plantnr<=411]<-2
-HarvestData$soort[HarvestData$plantnr>=500&HarvestData$plantnr<=511]<-3
-HarvestData$soort[HarvestData$plantnr>=600&HarvestData$plantnr<=611]<-4
-HarvestData$soort<-as.factor(HarvestData$soort)
-levels(HarvestData$soort)<-c("big", "cherry", "prunaxx", "small")
-
-HarvestData$rij<-NULL
-HarvestData$rij[HarvestData$plantnr>=300&HarvestData$plantnr<=311]<-1
-HarvestData$rij[HarvestData$plantnr>=400&HarvestData$plantnr<=411]<-2
-HarvestData$rij[HarvestData$plantnr>=500&HarvestData$plantnr<=511]<-3
-HarvestData$rij[HarvestData$plantnr>=600&HarvestData$plantnr<=611]<-4
-HarvestData$rij<-as.factor(HarvestData$rij)
-levels(HarvestData$rij)<-c("3", "4", "5", "6")
+finalmerge$soort<-NULL
+finalmerge$soort[finalmerge$plant>=300&finalmerge$plant<=311]<-1
+finalmerge$soort[finalmerge$plant>=400&finalmerge$plant<=411]<-2
+finalmerge$soort[finalmerge$plant>=500&finalmerge$plant<=511]<-3
+finalmerge$soort[finalmerge$plant>=600&finalmerge$plant<=611]<-4
+finalmerge$soort<-as.factor(finalmerge$soort)
+levels(finalmerge$soort)<-c("big", "cherry", "prunaxx", "small")
 
 
-View(HarvestData)
+finalmerge$correctWeight<-NULL
+finalmerge$correctWeight[finalmerge$plant>=300&finalmerge$plant<=311]<-182
+finalmerge$correctWeight[finalmerge$plant>=400&finalmerge$plant<=411]<-16
+finalmerge$correctWeight[finalmerge$plant>=500&finalmerge$plant<=511]<-182
+finalmerge$correctWeight[finalmerge$plant>=600&finalmerge$plant<=611]<-91
+finalmerge$correctWeight<-as.numeric(finalmerge$correctWeight)
+
+finalmerge$U<-ifelse(finalmerge$fruits*finalmerge$correctWeight<finalmerge$freshweight,0,1)
+finalmerge$U<-as.factor(finalmerge$U)
+levels(finalmerge$U)<-c("low","high")
+
+D<-finalmerge[,-c(40, 37, 38)]
+View(finalmerge)
+length(finalmerge)
+names(finalmerge)
+summary(D)
+
