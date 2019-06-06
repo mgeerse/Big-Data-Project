@@ -1,3 +1,4 @@
+#tomatensoort
 finalmerge$soort<-NULL
 finalmerge$soort[finalmerge$plant>=300&finalmerge$plant<=311]<-1
 finalmerge$soort[finalmerge$plant>=400&finalmerge$plant<=411]<-2
@@ -18,7 +19,13 @@ finalmerge$U<-ifelse(finalmerge$fruits*finalmerge$correctWeight>finalmerge$fresh
 finalmerge$U<-as.factor(finalmerge$U)
 levels(finalmerge$U)<-c("low","high")
 
+#splits de data op soort
 HarvestBig <-finalmerge[finalmerge$soort == "big", ]
 HarvestCherry <- finalmerge[finalmerge$soort == "cherry", ]
 HarvestSmall <- finalmerge[finalmerge$soort == "small", ]
 HarvestPrunaxx <- finalmerge[finalmerge$soort == "prunaxx", ]
+
+HarvestBig <- HarvestBig[,-c(32, 33, 39)]
+HarvestCherry<- HarvestCherry[,-c(32, 33, 39)]
+HarvestSmall<- HarvestSmall[,-c(32, 33, 39)]
+HarvestPrunaxx<- HarvestPrunaxx[,-c(32, 33, 39)]
