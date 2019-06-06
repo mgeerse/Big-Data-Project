@@ -1,31 +1,55 @@
 #tomatensoort
-finalmerge$soort<-NULL
-finalmerge$soort[finalmerge$plant>=300&finalmerge$plant<=311]<-1
-finalmerge$soort[finalmerge$plant>=400&finalmerge$plant<=411]<-2
-finalmerge$soort[finalmerge$plant>=500&finalmerge$plant<=511]<-3
-finalmerge$soort[finalmerge$plant>=600&finalmerge$plant<=611]<-4
-finalmerge$soort<-as.factor(finalmerge$soort)
-levels(finalmerge$soort)<-c("big", "cherry", "prunaxx", "small")
-
-
-finalmerge$correctWeight<-NULL
-finalmerge$correctWeight[finalmerge$plant>=300&finalmerge$plant<=311]<-182
-finalmerge$correctWeight[finalmerge$plant>=400&finalmerge$plant<=411]<-16
-finalmerge$correctWeight[finalmerge$plant>=500&finalmerge$plant<=511]<-182
-finalmerge$correctWeight[finalmerge$plant>=600&finalmerge$plant<=611]<-91
-finalmerge$correctWeight<-as.numeric(finalmerge$correctWeight)
-
-finalmerge$U<-ifelse(finalmerge$fruits*finalmerge$correctWeight>finalmerge$freshweight,0,1)
-finalmerge$U<-as.factor(finalmerge$U)
-levels(finalmerge$U)<-c("low","high")
+HarvestData$soort<-NULL
+HarvestData$soort[HarvestData$plant>=300&HarvestData$plant<=311]<-1
+HarvestData$soort[HarvestData$plant>=400&HarvestData$plant<=411]<-2
+HarvestData$soort[HarvestData$plant>=500&HarvestData$plant<=511]<-3
+HarvestData$soort[HarvestData$plant>=600&HarvestData$plant<=611]<-4
+HarvestData$soort<-as.factor(HarvestData$soort)
+levels(HarvestData$soort)<-c("big", "cherry", "prunaxx", "small")
 
 #splits de data op soort
-HarvestBig <-finalmerge[finalmerge$soort == "big", ]
-HarvestCherry <- finalmerge[finalmerge$soort == "cherry", ]
-HarvestSmall <- finalmerge[finalmerge$soort == "small", ]
-HarvestPrunaxx <- finalmerge[finalmerge$soort == "prunaxx", ]
+HarvestBig <-HarvestData[HarvestData$soort == "big", ]
+HarvestCherry <- HarvestData[HarvestData$soort == "cherry", ]
+HarvestSmall <- HarvestData[HarvestData$soort == "small", ]
+HarvestPrunaxx <- HarvestData[HarvestData$soort == "prunaxx", ]
 
-HarvestBig <- HarvestBig[,-c(32, 33, 39)]
-HarvestCherry<- HarvestCherry[,-c(32, 33, 39)]
-HarvestSmall<- HarvestSmall[,-c(32, 33, 39)]
-HarvestPrunaxx<- HarvestPrunaxx[,-c(32, 33, 39)]
+rownames(HarvestBig) <- c()
+HarvestBig$plant <- NULL
+HarvestBig$truss <- NULL
+HarvestBig$soort<-NULL
+HarvestBig$weightperfruit <- NULL
+
+rownames(HarvestCherry) <- c()
+HarvestCherry$plant <- NULL
+HarvestCherry$truss <- NULL
+HarvestCherry$soort<-NULL
+HarvestCherry$weightperfruit <- NULL
+
+rownames(HarvestSmall) <- c()
+HarvestSmall$plant <- NULL
+HarvestSmall$truss <- NULL
+HarvestSmall$soort<-NULL
+HarvestSmall$weightperfruit <- NULL
+
+rownames(HarvestPrunaxx) <- c()
+HarvestPrunaxx$plant <- NULL
+HarvestPrunaxx$truss <- NULL
+HarvestPrunaxx$soort<-NULL
+HarvestPrunaxx$weightperfruit <- NULL
+
+HarvestBigAggregated<-aggregate(x = HarvestBig[c("brix", "fruits", "diameter", "freshweight")],
+    FUN = MedianNoNA, by = list(date = HarvestBig$date))
+
+HarvestPrunaxxAggregated<-aggregate(x = HarvestPrunaxx[c("brix", "fruits", "diameter", "freshweight")],
+    FUN = MedianNoNA, by = list(date = HarvestPrunaxx$date))
+
+HarvestSmallAggregated<-aggregate(x = HarvestSmall[c("brix", "fruits", "diameter", "freshweight")],
+    FUN = MedianNoNA, by = list(date = HarvestSmall$date))
+
+HarvestCherryAggregated<-aggregate(x = HarvestCherry[c("brix", "fruits", "diameter", "freshweight")],
+    FUN = MedianNoNA, by = list(date = HarvestCherry$date))
+
+HarvestBigMerged <-merge(HarvestBigAggregated, merged, by.x = "date", by.y = "date")
+HarvestPrunaxxMerged <-merge(HarvestPrunaxxAggregated, merged, by.x = "date", by.y = "date")
+HarvestSmallMerged <-merge(HarvestSmallAggregated, merged, by.x = "date", by.y = "date")
+HarvestCherryMerged <-merge(HarvestCherryAggregated, merged, by.x = "date", by.y = "date")
