@@ -4,11 +4,18 @@
 rm(list=ls(all=TRUE))
 
 # Zet in de lijst hieronder je WD als je wilt, scheelt met pulls van de remote:
-# Maarten - desktop: setwd("C:\\Users\\mgeer\\Documents\\Git\\Big-Data-Project")
-# Maarten - laptop: setwd("C:\\Users\\Maarten\\Documents\\Git\\Big-Data-Project")
-# Ercan - laptop: setwd("C:\\Users\\user\\Desktop\\R programming")
-# Jacco - Laptop: setwd("D:\\documenten\\Bigdata\\Big-Data-Project")
-setwd("D:\\documenten\\Bigdata\\Big-Data-Project")
+# Uncomment de setwd onder jouw naam/device
+# Maarten - desktop
+#setwd("C:\\Users\\mgeer\\Documents\\Git\\Big-Data-Project")
+# Maarten - laptop
+#setwd("C:\\Users\\Maarten\\Documents\\Git\\Big-Data-Project")
+# Ercan - laptop
+#setwd("C:\\Users\\user\\Desktop\\R programming")
+# Jacco - Laptop
+#setwd("D:\\documenten\\Bigdata\\Big-Data-Project")
+# Teije - Laptop
+setwd("C:\\Users\\Teije\\Documents\\Big Data Project\\Big-Data-Project")
+
 
 # Load in the projectsettings.
 source("projectSettings.R")

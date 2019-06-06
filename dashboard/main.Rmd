@@ -1,0 +1,63 @@
+---
+title: "Dashboard: Group 2 & 4"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(foreign)
+library(caTools)
+
+```
+
+
+Growth
+=====================================
+
+Column {data-width=width .tabset}
+-----------------------------------------------------------------------
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+### Chart A
+
+```{r}
+
+```
+
+Column {data-width=300}
+-----------------------------------------------------------------------
+
+### Chart B
+```{r}
+
+```
+Column {data-width=300}
+-----------------------------------------------------------------------
+
+### Chart C
+
+```{r}
+
+```
+
+Harvest
+=====================================
+
+Climate & Irrigation
+=====================================
+
+Growth & Harvest (GH)
+=====================================
+
+GH Prediction Models
+=====================================
+
+Climate, Irrigation & Harvest (GIH)
+=====================================
+
+CIH Prediction Models
+=====================================
