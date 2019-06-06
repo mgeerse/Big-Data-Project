@@ -1,2 +1,2 @@
-# Teije heeft alles gedaan, Doei hallo
+# Teije heeft alles gedaan, Doei
 ![](hello.gif)
