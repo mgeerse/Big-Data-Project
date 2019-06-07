@@ -1,0 +1,112 @@
+# T-tests
+
+backup<-HarvestBigMeanMerged
+HarvestBigMeanMerged<-backup
+HarvestBigMeanMerged$date<-NULL
+View(HarvestSmallMeanMerged)
+
+lapply(HarvestPrunaxxMedianMerged[-1], function(x) {
+ 		t.test(HarvestSmallMeanMerged$room.temperature.inside ~ HarvestSmallMeanMerged$averageWeight, var.equal = FALSE)
+	}
+)
+
+t.test(HarvestBigMeanMerged$brix~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
+
+
+lapply(names(HarvestBigMeanMerged)[-1],function(x)
+           t.test(as.formula(paste(x,"averageWeight",sep="~")),
+                  data=HarvestBigMeanMerged))
+
+
+HarvestBigMeanMerged
+HarvestPrunaxxMeanMerged
+HarvestSmallMeanMerged
+HarvestCherryMeanMerged
+
+t.test(HarvestBigMeanMerged$air.humidity~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestBigMeanMerged$radiation.outside~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestBigMeanMerged$plant.temperature.small~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestBigMeanMerged$room.temperature.inside~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestBigMeanMerged$CO2.amount~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestBigMeanMerged$plant.temperature.big~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestBigMeanMerged$Average.Flow~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestBigMeanMerged$Average.EC~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestBigMeanMerged$Average.pH~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestBigMeanMerged$Sum.LitersPerM2~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestBigMeanMerged$Sum.Deviation~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestBigMeanMerged$Sum.TotalLiters~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestBigMeanMerged$Sum.Usage~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestBigMeanMerged$drain.percentage~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestBigMeanMerged$EC~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestBigMeanMerged$drain.water.amount~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestBigMeanMerged$absorb.water.amount~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestBigMeanMerged$brix~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestBigMeanMerged$fruits~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestBigMeanMerged$diameter~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
+
+t.test(HarvestPrunaxxMeanMerged$air.humidity~HarvestPrunaxxMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestPrunaxxMeanMerged$radiation.outside~HarvestPrunaxxMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestPrunaxxMeanMerged$plant.temperature.small~HarvestPrunaxxMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestPrunaxxMeanMerged$room.temperature.inside~HarvestPrunaxxMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestPrunaxxMeanMerged$CO2.amount~HarvestPrunaxxMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestPrunaxxMeanMerged$plant.temperature.big~HarvestPrunaxxMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestPrunaxxMeanMerged$Average.Flow~HarvestPrunaxxMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestPrunaxxMeanMerged$Average.EC~HarvestPrunaxxMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestPrunaxxMeanMerged$Average.pH~HarvestPrunaxxMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestPrunaxxMeanMerged$Sum.LitersPerM2~HarvestPrunaxxMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestPrunaxxMeanMerged$Sum.Deviation~HarvestPrunaxxMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestPrunaxxMeanMerged$Sum.TotalLiters~HarvestPrunaxxMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestPrunaxxMeanMerged$Sum.Usage~HarvestPrunaxxMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestPrunaxxMeanMerged$drain.percentage~HarvestPrunaxxMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestPrunaxxMeanMerged$EC~HarvestPrunaxxMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestPrunaxxMeanMerged$pH~HarvestPrunaxxMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestPrunaxxMeanMerged$drain.water.amount~HarvestPrunaxxMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestPrunaxxMeanMerged$absorb.water.amount~HarvestPrunaxxMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestPrunaxxMeanMerged$brix~HarvestPrunaxxMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestPrunaxxMeanMerged$fruits~HarvestPrunaxxMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestPrunaxxMeanMerged$diameter~HarvestPrunaxxMeanMerged$averageWeight, var.equal = FALSE)
+
+t.test(HarvestSmallMeanMerged$air.humidity~HarvestSmallMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestSmallMeanMerged$radiation.outside~HarvestSmallMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestSmallMeanMerged$plant.temperature.small~HarvestSmallMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestSmallMeanMerged$room.temperature.inside~HarvestSmallMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestSmallMeanMerged$CO2.amount~HarvestSmallMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestSmallMeanMerged$plant.temperature.big~HarvestSmallMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestSmallMeanMerged$Average.Flow~HarvestSmallMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestSmallMeanMerged$Average.EC~HarvestSmallMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestSmallMeanMerged$Average.pH~HarvestSmallMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestSmallMeanMerged$Sum.LitersPerM2~HarvestSmallMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestSmallMeanMerged$Sum.Deviation~HarvestSmallMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestSmallMeanMerged$Sum.TotalLiters~HarvestSmallMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestSmallMeanMerged$Sum.Usage~HarvestSmallMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestSmallMeanMerged$drain.percentage~HarvestSmallMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestSmallMeanMerged$EC~HarvestSmallMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestSmallMeanMerged$pH~HarvestSmallMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestSmallMeanMerged$drain.water.amount~HarvestSmallMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestSmallMeanMerged$absorb.water.amount~HarvestSmallMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestSmallMeanMerged$brix~HarvestSmallMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestSmallMeanMerged$fruits~HarvestSmallMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestSmallMeanMerged$diameter~HarvestSmallMeanMerged$averageWeight, var.equal = FALSE)
+
+t.test(HarvestCherryMeanMerged$air.humidity~HarvestCherryMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestCherryMeanMerged$radiation.outside~HarvestCherryMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestCherryMeanMerged$plant.temperature.small~HarvestCherryMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestCherryMeanMerged$room.temperature.inside~HarvestCherryMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestCherryMeanMerged$CO2.amount~HarvestCherryMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestCherryMeanMerged$plant.temperature.big~HarvestCherryMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestCherryMeanMerged$Average.Flow~HarvestCherryMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestCherryMeanMerged$Average.EC~HarvestCherryMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestCherryMeanMerged$Average.pH~HarvestCherryMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestCherryMeanMerged$Sum.LitersPerM2~HarvestCherryMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestCherryMeanMerged$Sum.Deviation~HarvestCherryMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestCherryMeanMerged$Sum.TotalLiters~HarvestCherryMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestCherryMeanMerged$Sum.Usage~HarvestCherryMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestCherryMeanMerged$drain.percentage~HarvestCherryMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestCherryMeanMerged$EC~HarvestCherryMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestCherryMeanMerged$drain.water.amount~HarvestCherryMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestCherryMeanMerged$absorb.water.amount~HarvestCherryMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestCherryMeanMerged$pH~HarvestCherryMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestCherryMeanMerged$brix~HarvestCherryMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestCherryMeanMerged$fruits~HarvestCherryMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestCherryMeanMerged$diameter~HarvestCherryMeanMerged$averageWeight, var.equal = FALSE)
+
