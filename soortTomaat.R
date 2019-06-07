@@ -14,26 +14,26 @@ HarvestSmall <- HarvestData[HarvestData$soort == "small", ]
 HarvestPrunaxx <- HarvestData[HarvestData$soort == "prunaxx", ]
 
 rownames(HarvestBig) <- c()
-HarvestBig$plant <- NULL
-HarvestBig$truss <- NULL
+#HarvestBig$plant <- NULL
+#HarvestBig$truss <- NULL
 HarvestBig$soort<-NULL
 HarvestBig$weightperfruit <- NULL
 
 rownames(HarvestCherry) <- c()
-HarvestCherry$plant <- NULL
-HarvestCherry$truss <- NULL
+#HarvestCherry$plant <- NULL
+#HarvestCherry$truss <- NULL
 HarvestCherry$soort<-NULL
 HarvestCherry$weightperfruit <- NULL
 
 rownames(HarvestSmall) <- c()
-HarvestSmall$plant <- NULL
-HarvestSmall$truss <- NULL
+#HarvestSmall$plant <- NULL
+#HarvestSmall$truss <- NULL
 HarvestSmall$soort<-NULL
 HarvestSmall$weightperfruit <- NULL
 
 rownames(HarvestPrunaxx) <- c()
-HarvestPrunaxx$plant <- NULL
-HarvestPrunaxx$truss <- NULL
+#HarvestPrunaxx$plant <- NULL
+#HarvestPrunaxx$truss <- NULL
 HarvestPrunaxx$soort<-NULL
 HarvestPrunaxx$weightperfruit <- NULL
 
@@ -61,14 +61,14 @@ HarvestSmallMean<-aggregate(x = HarvestSmall[c("brix", "fruits", "diameter", "fr
 HarvestCherryMean<-aggregate(x = HarvestCherry[c("brix", "fruits", "diameter", "freshweight")],
     FUN = MeanNoNA, by = list(date = HarvestCherry$date))
 
-HarvestBigMedianMerged <-merge(HarvestBigMedian, merged, by.x = "date", by.y = "date")
-HarvestPrunaxxMedianMerged <-merge(HarvestPrunaxxMedian, merged, by.x = "date", by.y = "date")
-HarvestSmallMedianMerged <-merge(HarvestSmallMedian, merged, by.x = "date", by.y = "date")
-HarvestCherryMedianMerged <-merge(HarvestCherryMedian, merged, by.x = "date", by.y = "date")
-HarvestBigMeanMerged <-merge(HarvestBigMean, merged, by.x = "date", by.y = "date")
-HarvestPrunaxxMeanMerged <-merge(HarvestPrunaxxMean, merged, by.x = "date", by.y = "date")
-HarvestSmallMeanMerged <-merge(HarvestSmallMean, merged, by.x = "date", by.y = "date")
-HarvestCherryMeanMerged <-merge(HarvestCherryMean, merged, by.x = "date", by.y = "date")
+HarvestBigMedianMerged <-merge(HarvestBigMedian, system1, by.x = "date", by.y = "date")
+HarvestPrunaxxMedianMerged <-merge(HarvestPrunaxxMedian, system1, by.x = "date", by.y = "date")
+HarvestSmallMedianMerged <-merge(HarvestSmallMedian, system2, by.x = "date", by.y = "date")
+HarvestCherryMedianMerged <-merge(HarvestCherryMedian, system2, by.x = "date", by.y = "date")
+HarvestBigMeanMerged <-merge(HarvestBigMean, system1, by.x = "date", by.y = "date")
+HarvestPrunaxxMeanMerged <-merge(HarvestPrunaxxMean, system1, by.x = "date", by.y = "date")
+HarvestSmallMeanMerged <-merge(HarvestSmallMean, system2, by.x = "date", by.y = "date")
+HarvestCherryMeanMerged <-merge(HarvestCherryMean, system2, by.x = "date", by.y = "date")
 
 HarvestBigMedianMerged$averageWeight<-ifelse(HarvestBigMedianMerged$freshweight<mean(HarvestBigMedianMerged$freshweight),0,1)
 HarvestBigMedianMerged$averageWeight<-as.factor(HarvestBigMedianMerged$averageWeight)
