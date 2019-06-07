@@ -14,6 +14,7 @@ t.test(HarvestBigMeanMerged$Sum.TotalLiters~HarvestBigMeanMerged$averageWeight, 
 t.test(HarvestBigMeanMerged$Sum.Usage~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
 t.test(HarvestBigMeanMerged$drain.percentage~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
 t.test(HarvestBigMeanMerged$EC~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
+t.test(HarvestBigMeanMerged$pH~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
 t.test(HarvestBigMeanMerged$drain.water.amount~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
 t.test(HarvestBigMeanMerged$absorb.water.amount~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
 t.test(HarvestBigMeanMerged$brix~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
