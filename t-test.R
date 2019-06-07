@@ -1,28 +1,4 @@
 # T-tests
-
-backup<-HarvestBigMeanMerged
-HarvestBigMeanMerged<-backup
-HarvestBigMeanMerged$date<-NULL
-View(HarvestSmallMeanMerged)
-
-lapply(HarvestPrunaxxMedianMerged[-1], function(x) {
- 		t.test(HarvestSmallMeanMerged$room.temperature.inside ~ HarvestSmallMeanMerged$averageWeight, var.equal = FALSE)
-	}
-)
-
-t.test(HarvestBigMeanMerged$brix~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
-
-
-lapply(names(HarvestBigMeanMerged)[-1],function(x)
-           t.test(as.formula(paste(x,"averageWeight",sep="~")),
-                  data=HarvestBigMeanMerged))
-
-
-HarvestBigMeanMerged
-HarvestPrunaxxMeanMerged
-HarvestSmallMeanMerged
-HarvestCherryMeanMerged
-
 t.test(HarvestBigMeanMerged$air.humidity~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
 t.test(HarvestBigMeanMerged$radiation.outside~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
 t.test(HarvestBigMeanMerged$plant.temperature.small~HarvestBigMeanMerged$averageWeight, var.equal = FALSE)
