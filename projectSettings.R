@@ -26,7 +26,7 @@ library(caTools)
 library(rpart)
 library(e1071)
 library(rpart.plot)
-ibrary(randomForest)
+library(randomForest)
 library(nnet)
 
 # Set this to climatedata file name

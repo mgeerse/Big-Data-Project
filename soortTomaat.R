@@ -89,17 +89,86 @@ levels(HarvestCherryMedianMerged$averageWeight)<-c("Low yield", "high yield")
 ###
 HarvestBigMeanMerged$averageWeight<-ifelse(HarvestBigMeanMerged$freshweight<mean(HarvestBigMeanMerged$freshweight),0,1)
 HarvestBigMeanMerged$averageWeight<-as.factor(HarvestBigMeanMerged$averageWeight)
-levels(HarvestBigMeanMerged$averageWeight)<-c("Low yield", "high yield")
+levels(HarvestBigMeanMerged$averageWeight)<-c("Low yield", "High yield")
 
 HarvestPrunaxxMeanMerged$averageWeight<-ifelse(HarvestPrunaxxMeanMerged$freshweight<mean(HarvestPrunaxxMeanMerged$freshweight),0,1)
 HarvestPrunaxxMeanMerged$averageWeight<-as.factor(HarvestPrunaxxMeanMerged$averageWeight)
-levels(HarvestPrunaxxMeanMerged$averageWeight)<-c("Low yield", "high yield")
+levels(HarvestPrunaxxMeanMerged$averageWeight)<-c("Low yield", "High yield")
 
 HarvestSmallMeanMerged$averageWeight<-ifelse(HarvestSmallMeanMerged$freshweight<mean(HarvestSmallMeanMerged$freshweight),0,1)
 HarvestSmallMeanMerged$averageWeight<-as.factor(HarvestSmallMeanMerged$averageWeight)
-levels(HarvestSmallMeanMerged$averageWeight)<-c("Low yield", "high yield")
+levels(HarvestSmallMeanMerged$averageWeight)<-c("Low yield", "High yield")
 
 HarvestCherryMeanMerged$averageWeight<-ifelse(HarvestCherryMeanMerged$freshweight<mean(HarvestCherryMeanMerged$freshweight),0,1)
 HarvestCherryMeanMerged$averageWeight<-as.factor(HarvestCherryMeanMerged$averageWeight)
-levels(HarvestCherryMeanMerged$averageWeight)<-c("Low yield", "high yield")
+levels(HarvestCherryMeanMerged$averageWeight)<-c("Low yield", "High yield")
 
+####
+####
+HarvestBigMedianMerged$averageBrix<-ifelse(HarvestBigMedianMerged$brix<mean(HarvestBigMedianMerged$brix),0,1)
+HarvestBigMedianMerged$averageBrix<-as.factor(HarvestBigMedianMerged$averageBrix)
+levels(HarvestBigMedianMerged$averageBrix)<-c("Low", "High")
+
+HarvestPrunaxxMedianMerged$averageBrix<-ifelse(HarvestPrunaxxMedianMerged$brix<mean(HarvestPrunaxxMedianMerged$brix),0,1)
+HarvestPrunaxxMedianMerged$averageBrix<-as.factor(HarvestPrunaxxMedianMerged$averageBrix)
+levels(HarvestPrunaxxMedianMerged$averageBrix)<-c("Low", "High")
+
+HarvestSmallMedianMerged$averageBrix<-ifelse(HarvestSmallMedianMerged$brix<mean(HarvestSmallMedianMerged$brix),0,1)
+HarvestSmallMedianMerged$averageBrix<-as.factor(HarvestSmallMedianMerged$averageBrix)
+levels(HarvestSmallMedianMerged$averageBrix)<-c("Low", "High")
+
+HarvestCherryMedianMerged$averageBrix<-ifelse(HarvestCherryMedianMerged$brix<mean(HarvestCherryMedianMerged$brix),0,1)
+HarvestCherryMedianMerged$averageBrix<-as.factor(HarvestCherryMedianMerged$averageBrix)
+levels(HarvestCherryMedianMerged$averageBrix)<-c("Low", "High")
+
+###
+HarvestBigMeanMerged$averageBrix<-ifelse(HarvestBigMeanMerged$brix<mean(HarvestBigMeanMerged$brix),0,1)
+HarvestBigMeanMerged$averageBrix<-as.factor(HarvestBigMeanMerged$averageBrix)
+levels(HarvestBigMeanMerged$averageBrix)<-c("Low", "High")
+
+HarvestPrunaxxMeanMerged$averageBrix<-ifelse(HarvestPrunaxxMeanMerged$brix<mean(HarvestPrunaxxMeanMerged$brix),0,1)
+HarvestPrunaxxMeanMerged$averageBrix<-as.factor(HarvestPrunaxxMeanMerged$averageBrix)
+levels(HarvestPrunaxxMeanMerged$averageBrix)<-c("Low", "High")
+
+HarvestSmallMeanMerged$averageBrix<-ifelse(HarvestSmallMeanMerged$brix<mean(HarvestSmallMeanMerged$brix),0,1)
+HarvestSmallMeanMerged$averageBrix<-as.factor(HarvestSmallMeanMerged$averageBrix)
+levels(HarvestSmallMeanMerged$averageBrix)<-c("Low", "High")
+
+HarvestCherryMeanMerged$averageBrix<-ifelse(HarvestCherryMeanMerged$brix<mean(HarvestCherryMeanMerged$brix),0,1)
+HarvestCherryMeanMerged$averageBrix<-as.factor(HarvestCherryMeanMerged$averageBrix)
+levels(HarvestCherryMeanMerged$averageBrix)<-c("Low", "High")
+
+####
+####
+HarvestBigMedianMerged$averageFruits<-ifelse(HarvestBigMedianMerged$fruits<mean(HarvestBigMedianMerged$fruits),0,1)
+HarvestBigMedianMerged$averageFruits<-as.factor(HarvestBigMedianMerged$averageFruits)
+levels(HarvestBigMedianMerged$averageFruits)<-c("Low", "High")
+
+HarvestPrunaxxMedianMerged$averageFruits<-ifelse(HarvestPrunaxxMedianMerged$fruits<mean(HarvestPrunaxxMedianMerged$fruits),0,1)
+HarvestPrunaxxMedianMerged$averageFruits<-as.factor(HarvestPrunaxxMedianMerged$averageFruits)
+levels(HarvestPrunaxxMedianMerged$averageFruits)<-c("Low", "High")
+
+HarvestSmallMedianMerged$averageFruits<-ifelse(HarvestSmallMedianMerged$fruits<mean(HarvestSmallMedianMerged$fruits),0,1)
+HarvestSmallMedianMerged$averageFruits<-as.factor(HarvestSmallMedianMerged$averageFruits)
+levels(HarvestSmallMedianMerged$averageFruits)<-c("Low", "High")
+
+HarvestCherryMedianMerged$averageFruits<-ifelse(HarvestCherryMedianMerged$fruits<mean(HarvestCherryMedianMerged$fruits),0,1)
+HarvestCherryMedianMerged$averageFruits<-as.factor(HarvestCherryMedianMerged$averageFruits)
+levels(HarvestCherryMedianMerged$averageFruits)<-c("Low", "High")
+
+###
+HarvestBigMeanMerged$averageFruits<-ifelse(HarvestBigMeanMerged$fruits<mean(HarvestBigMeanMerged$fruits),0,1)
+HarvestBigMeanMerged$averageFruits<-as.factor(HarvestBigMeanMerged$averageFruits)
+levels(HarvestBigMeanMerged$averageFruits)<-c("Low", "High")
+
+HarvestPrunaxxMeanMerged$averageFruits<-ifelse(HarvestPrunaxxMeanMerged$fruits<mean(HarvestPrunaxxMeanMerged$fruits),0,1)
+HarvestPrunaxxMeanMerged$averageFruits<-as.factor(HarvestPrunaxxMeanMerged$averageFruits)
+levels(HarvestPrunaxxMeanMerged$averageFruits)<-c("Low", "High")
+
+HarvestSmallMeanMerged$averageFruits<-ifelse(HarvestSmallMeanMerged$fruits<mean(HarvestSmallMeanMerged$fruits),0,1)
+HarvestSmallMeanMerged$averageFruits<-as.factor(HarvestSmallMeanMerged$averageFruits)
+levels(HarvestSmallMeanMerged$averageFruits)<-c("Low", "High")
+
+HarvestCherryMeanMerged$averageFruits<-ifelse(HarvestCherryMeanMerged$fruits<mean(HarvestCherryMeanMerged$fruits),0,1)
+HarvestCherryMeanMerged$averageFruits<-as.factor(HarvestCherryMeanMerged$averageFruits)
+levels(HarvestCherryMeanMerged$averageFruits)<-c("Low", "High")
