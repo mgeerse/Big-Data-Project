@@ -7,6 +7,11 @@ HarvestData$soort[HarvestData$plant>=600&HarvestData$plant<=611]<-4
 HarvestData$soort<-as.factor(HarvestData$soort)
 levels(HarvestData$soort)<-c("big", "cherry", "prunaxx", "small")
 
+HarvestData$brix<-NULL
+HarvestData$diameter<-NULL
+HarvestData$weightperfruit<-NULL
+
+
 
 #splits de data op soort
 HarvestBig <-HarvestData[HarvestData$soort == "big", ]
