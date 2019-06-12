@@ -11,6 +11,21 @@ MedianNoNA<-function(x){
 	(median(x))
 }
 
+# Boruta var selection
+varSelection<-function(traindata){
+  boruta.train <- Boruta(freshweight~., data = na.omit(traindata), doTrace=0)
+  plot(boruta.train, xlab = "", xaxt = "n")
+  lz<-lapply(1:ncol(boruta.train$ImpHistory),function(i)
+    boruta.train$ImpHistory[is.finite(boruta.train$ImpHistory[,i]),i])
+  names(lz) <- colnames(boruta.train$ImpHistory)
+  Labels <- sort(sapply(lz,median))
+  axis(side = 1,las=2,labels = names(Labels),
+       at = 1:ncol(boruta.train$ImpHistory), cex.axis = 0.7)
+  
+  final.boruta <- TentativeRoughFix(boruta.train)
+  return(final.boruta$finalDecision)
+}
+
 completeOurData<-function(data){
   # Set up the traindata
   traindata<-data
