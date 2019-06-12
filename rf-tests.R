@@ -39,6 +39,8 @@ Prunaxx<-HarvestPrunaxxMerged[,-c(1,5)]
 Small<-HarvestSmallMerged[,-c(1,5)]
 Cherry<-HarvestCherryMerged[,-c(1,5)]
 
+### weight
+# Big
 windows()
 rfModel<-randomForest(
 		averageWeight~room.temperature.inside+air.humidity+CO2.amount+radiation.outside+plant.temperature.big+plant.temperature.small+Average.EC+Average.Flow+Average.pH+Sum.LitersPerM2+Sum.Deviation+Sum.TotalLiters+Sum.Usage+drain.percentage+EC+pH+drain.water.amount+absorb.water.amount,
@@ -48,9 +50,9 @@ rfProbs<-predict(rfModel,type="prob")[,"Low yield"]
 AUCrf<-colAUC(rfProbs,Big$averageWeight,alg="ROC",plot=T)
 AUCrf
 varImpPlot(rfModel,sort=TRUE)
-windows()
-boxplot(rfProbs~Big$averageWeight,ylab="probability",col=c("red","green"))
 
+
+# Prunaxx
 windows()
 rfModel<-randomForest(
 		averageWeight~room.temperature.inside+air.humidity+CO2.amount+radiation.outside+plant.temperature.big+plant.temperature.small+Average.EC+Average.Flow+Average.pH+Sum.LitersPerM2+Sum.Deviation+Sum.TotalLiters+Sum.Usage+drain.percentage+EC+pH+drain.water.amount+absorb.water.amount,
@@ -63,6 +65,7 @@ varImpPlot(rfModel,sort=TRUE)
 windows()
 boxplot(rfProbs~Prunaxx$averageWeight,ylab="probability",col=c("red","green"))
 
+# Small
 windows()
 rfModel<-randomForest(
 		averageWeight~room.temperature.inside+air.humidity+CO2.amount+radiation.outside+plant.temperature.big+plant.temperature.small+Average.EC+Average.Flow+Average.pH+Sum.LitersPerM2+Sum.Deviation+Sum.TotalLiters+Sum.Usage+drain.percentage+EC+pH+drain.water.amount+absorb.water.amount,
