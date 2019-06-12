@@ -5,3 +5,8 @@ MeanNoNA<-function(x){
 	x<-na.omit(x)
 	(mean(x))
 }
+
+MedianNoNA<-function(x){
+	x<-na.omit(x)
+	(median(x))
+}

@@ -12,9 +12,9 @@ rm(list=ls(all=TRUE))
 # Ercan - laptop
 #setwd("C:\\Users\\user\\Desktop\\R programming")
 # Jacco - Laptop
-#setwd("D:\\documenten\\Bigdata\\Big-Data-Project")
+setwd("D:\\documenten\\Bigdata\\Big-Data-Project")
 # Teije - Laptop
-setwd("C:\\Users\\Teije\\Documents\\Big Data Project\\Big-Data-Project")
+#setwd("C:\\Users\\Teije\\Documents\\Big Data Project\\Big-Data-Project")
 
 
 # Load in the projectsettings.
@@ -29,6 +29,7 @@ source("dataCleaner.R")
 
 # Merge the data
 source("dataMerger.R")
+source("soortTomaat.R")
 source("finalDataMerge.R")
 
 # Sandbox; use this file to test your own softwarecode.
