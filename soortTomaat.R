@@ -6,9 +6,6 @@ HarvestData$soort[HarvestData$plant>=500&HarvestData$plant<=511]<-3
 HarvestData$soort[HarvestData$plant>=600&HarvestData$plant<=611]<-4
 HarvestData$soort<-as.factor(HarvestData$soort)
 levels(HarvestData$soort)<-c("big", "cherry", "prunaxx", "small")
-HarvestData$brix->NULL
-HarvestData$diameter->NULL
-HarvestData$weightperfruit->NULL
 
 
 #splits de data op soort
@@ -56,23 +53,6 @@ HarvestCherryMerged$averageWeight<-ifelse(HarvestCherryMerged$freshweight<mean(H
 HarvestCherryMerged$averageWeight<-as.factor(HarvestCherryMerged$averageWeight)
 levels(HarvestCherryMerged$averageWeight)<-c("Low yield", "High yield")
 
-####
-####
-HarvestBigMerged$averageBrix<-ifelse(HarvestBigMerged$brix<mean(HarvestBigMerged$brix),0,1)
-HarvestBigMerged$averageBrix<-as.factor(HarvestBigMerged$averageBrix)
-levels(HarvestBigMerged$averageBrix)<-c("Low", "High")
-
-HarvestPrunaxxMerged$averageBrix<-ifelse(HarvestPrunaxxMerged$brix<mean(HarvestPrunaxxMerged$brix),0,1)
-HarvestPrunaxxMerged$averageBrix<-as.factor(HarvestPrunaxxMerged$averageBrix)
-levels(HarvestPrunaxxMerged$averageBrix)<-c("Low", "High")
-
-HarvestSmallMerged$averageBrix<-ifelse(HarvestSmallMerged$brix<mean(HarvestSmallMerged$brix),0,1)
-HarvestSmallMerged$averageBrix<-as.factor(HarvestSmallMerged$averageBrix)
-levels(HarvestSmallMerged$averageBrix)<-c("Low", "High")
-
-HarvestCherryMerged$averageBrix<-ifelse(HarvestCherryMerged$brix<mean(HarvestCherryMerged$brix),0,1)
-HarvestCherryMerged$averageBrix<-as.factor(HarvestCherryMerged$averageBrix)
-levels(HarvestCherryMerged$averageBrix)<-c("Low", "High")
 
 ####
 ####

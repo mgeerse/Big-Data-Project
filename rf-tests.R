@@ -1,8 +1,9 @@
 
-Big<-HarvestBigMerged[,-c(1,5)]
-Prunaxx<-HarvestPrunaxxMerged[,-c(1,5)]
-Small<-HarvestSmallMerged[,-c(1,5)]
-Cherry<-HarvestCherryMerged[,-c(1,5)]
+Big<-HarvestBigMerged
+Prunaxx<-HarvestPrunaxxMerged
+Small<-HarvestSmallMerged
+Cherry<-HarvestCherryMerged
+
 
 ### weight
 # Big
@@ -55,10 +56,10 @@ varImpPlot(rfModel,sort=TRUE)
 windows()
 rfModel<-randomForest(
   averageBrix~room.temperature.inside+air.humidity+CO2.amount+radiation.outside+plant.temperature.big+plant.temperature.small+Average.EC+Average.Flow+Average.pH+Sum.LitersPerM2+Sum.Deviation+Sum.TotalLiters+Sum.Usage+drain.percentage+EC+pH+drain.water.amount+absorb.water.amount,
-  data=BigMean,
+  data=Big,
   ntree=500,importance=TRUE)
 rfProbs<-predict(rfModel,type="prob")
-AUCrf<-colAUC(rfProbs,BigMean$averageBrix,alg="ROC",plot=T)[,"High"]
+AUCrf<-colAUC(rfProbs,Big$averageBrix,alg="ROC",plot=T)[,"High"]
 AUCrf
 windows()
 varImpPlot(rfModel,sort=TRUE, main = "variables that have influance on the average brix of a big tomato")
@@ -67,10 +68,10 @@ varImpPlot(rfModel,sort=TRUE, main = "variables that have influance on the avera
 windows()
 rfModel<-randomForest(
   averageBrix~room.temperature.inside+air.humidity+CO2.amount+radiation.outside+plant.temperature.big+plant.temperature.small+Average.EC+Average.Flow+Average.pH+Sum.LitersPerM2+Sum.Deviation+Sum.TotalLiters+Sum.Usage+drain.percentage+EC+pH+drain.water.amount+absorb.water.amount,
-  data=PrunaxxMean,
+  data=Prunaxx,
   ntree=500,importance=TRUE)
 rfProbs<-predict(rfModel,type="prob")
-AUCrf<-colAUC(rfProbs,PrunaxxMean$averageBrix,alg="ROC",plot=T)[,"High"]
+AUCrf<-colAUC(rfProbs,Prunaxx$averageBrix,alg="ROC",plot=T)[,"High"]
 AUCrf
 windows()
 varImpPlot(rfModel,sort=TRUE, main = "variables that have influance on the average brix of a prunax tomato")
@@ -79,10 +80,10 @@ varImpPlot(rfModel,sort=TRUE, main = "variables that have influance on the avera
 windows()
 rfModel<-randomForest(
   averageBrix~room.temperature.inside+air.humidity+CO2.amount+radiation.outside+plant.temperature.big+plant.temperature.small+Average.EC+Average.Flow+Average.pH+Sum.LitersPerM2+Sum.Deviation+Sum.TotalLiters+Sum.Usage+drain.percentage+EC+pH+drain.water.amount+absorb.water.amount,
-  data=SmallMean,
+  data=Small,
   ntree=500,importance=TRUE)
 rfProbs<-predict(rfModel,type="prob")
-AUCrf<-colAUC(rfProbs,SmallMean$averageBrix,alg="ROC",plot=T)[,"High"]
+AUCrf<-colAUC(rfProbs,Small$averageBrix,alg="ROC",plot=T)[,"High"]
 AUCrf
 windows()
 varImpPlot(rfModel,sort=TRUE, main = "variables that have influance on the average brix of a small tomato")
@@ -91,10 +92,10 @@ varImpPlot(rfModel,sort=TRUE, main = "variables that have influance on the avera
 windows()
 rfModel<-randomForest(
   averageBrix~room.temperature.inside+air.humidity+CO2.amount+radiation.outside+plant.temperature.big+plant.temperature.small+Average.EC+Average.Flow+Average.pH+Sum.LitersPerM2+Sum.Deviation+Sum.TotalLiters+Sum.Usage+drain.percentage+EC+pH+drain.water.amount+absorb.water.amount,
-  data=CherryMean,
+  data=Cherry,
   ntree=500,importance=TRUE)
 rfProbs<-predict(rfModel,type="prob")
-AUCrf<-colAUC(rfProbs,CherryMean$averageBrix,alg="ROC",plot=T)[,"High"]
+AUCrf<-colAUC(rfProbs,Cherry$averageBrix,alg="ROC",plot=T)[,"High"]
 AUCrf
 windows()
 varImpPlot(rfModel,sort=TRUE, main = "variables that have influance on the average brix of a cherry tomato")
@@ -104,10 +105,10 @@ varImpPlot(rfModel,sort=TRUE, main = "variables that have influance on the avera
 windows()
 rfModel<-randomForest(
   averageFruits~room.temperature.inside+air.humidity+CO2.amount+radiation.outside+plant.temperature.big+plant.temperature.small+Average.EC+Average.Flow+Average.pH+Sum.LitersPerM2+Sum.Deviation+Sum.TotalLiters+Sum.Usage+drain.percentage+EC+pH+drain.water.amount+absorb.water.amount,
-  data=BigMean,
+  data=Big,
   ntree=500,importance=TRUE)
 rfProbs<-predict(rfModel,type="prob")
-AUCrf<-colAUC(rfProbs,BigMean$averageFruits,alg="ROC",plot=T)[,"High"]
+AUCrf<-colAUC(rfProbs,Big$averageFruits,alg="ROC",plot=T)[,"High"]
 AUCrf
 windows()
 varImpPlot(rfModel,sort=TRUE, main = "variables that have influance on the average number of fruits of a big tomato")
@@ -116,10 +117,10 @@ varImpPlot(rfModel,sort=TRUE, main = "variables that have influance on the avera
 windows()
 rfModel<-randomForest(
   averageFruits~room.temperature.inside+air.humidity+CO2.amount+radiation.outside+plant.temperature.big+plant.temperature.small+Average.EC+Average.Flow+Average.pH+Sum.LitersPerM2+Sum.Deviation+Sum.TotalLiters+Sum.Usage+drain.percentage+EC+pH+drain.water.amount+absorb.water.amount,
-  data=PrunaxxMean,
+  data=Prunaxx,
   ntree=500,importance=TRUE)
 rfProbs<-predict(rfModel,type="prob")
-AUCrf<-colAUC(rfProbs,PrunaxxMean$averageFruits,alg="ROC",plot=T)[,"High"]
+AUCrf<-colAUC(rfProbs,Prunaxx$averageFruits,alg="ROC",plot=T)[,"High"]
 AUCrf
 windows()
 varImpPlot(rfModel,sort=TRUE, main = "variables that have influance on the average number of fruits of a prunaxx tomato")
@@ -128,10 +129,10 @@ varImpPlot(rfModel,sort=TRUE, main = "variables that have influance on the avera
 windows()
 rfModel<-randomForest(
   averageFruits~room.temperature.inside+air.humidity+CO2.amount+radiation.outside+plant.temperature.big+plant.temperature.small+Average.EC+Average.Flow+Average.pH+Sum.LitersPerM2+Sum.Deviation+Sum.TotalLiters+Sum.Usage+drain.percentage+EC+pH+drain.water.amount+absorb.water.amount,
-  data=SmallMean,
+  data=Small,
   ntree=500,importance=TRUE)
 rfProbs<-predict(rfModel,type="prob")
-AUCrf<-colAUC(rfProbs,SmallMean$averageFruits,alg="ROC",plot=T)[,"High"]
+AUCrf<-colAUC(rfProbs,Small$averageFruits,alg="ROC",plot=T)[,"High"]
 AUCrf
 windows()
 varImpPlot(rfModel,sort=TRUE, main = "variables that have influance on the average number of fruits of a small tomato")
@@ -143,7 +144,7 @@ rfModel<-randomForest(
   data=Cherry,
   ntree=500,importance=TRUE)
 rfProbs<-predict(rfModel,type="prob")
-AUCrf<-colAUC(rfProbs,CherryMean$averageFruits,alg="ROC",plot=T)[,"High"]
+AUCrf<-colAUC(rfProbs,Cherry$averageFruits,alg="ROC",plot=T)[,"High"]
 AUCrf
 windows()
 varImpPlot(rfModel,sort=TRUE, main = "variables that have influance on the average number of fruits of a cherry tomato")
