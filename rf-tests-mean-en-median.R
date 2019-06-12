@@ -7,6 +7,7 @@ SmallMean<-HarvestSmallMeanMerged[,-c(1,5)]
 CherryMean<-HarvestCherryMeanMerged[,-c(1,5)]
 
 ### weight
+# Big
 windows()
 rfModel<-randomForest(
 		averageWeight~room.temperature.inside+air.humidity+CO2.amount+radiation.outside+plant.temperature.big+plant.temperature.small+Average.EC+Average.Flow+Average.pH+Sum.LitersPerM2+Sum.Deviation+Sum.TotalLiters+Sum.Usage+drain.percentage+EC+pH+drain.water.amount+absorb.water.amount,
@@ -16,7 +17,7 @@ rfProbs<-predict(rfModel,type="prob")
 AUCrf<-colAUC(rfProbs,BigMean$averageWeight,alg="ROC",plot=T)
 AUCrf
 varImpPlot(rfModel,sort=TRUE)
-
+# Prunaxx
 windows()
 rfModel<-randomForest(
 		averageWeight~room.temperature.inside+air.humidity+CO2.amount+radiation.outside+plant.temperature.big+plant.temperature.small+Average.EC+Average.Flow+Average.pH+Sum.LitersPerM2+Sum.Deviation+Sum.TotalLiters+Sum.Usage+drain.percentage+EC+pH+drain.water.amount+absorb.water.amount,
@@ -26,7 +27,7 @@ rfProbs<-predict(rfModel,type="prob")
 AUCrf<-colAUC(rfProbs,PrunaxxMean$averageWeight,alg="ROC",plot=T)
 AUCrf
 varImpPlot(rfModel,sort=TRUE)
-
+# Small
 windows()
 rfModel<-randomForest(
 		averageWeight~room.temperature.inside+air.humidity+CO2.amount+radiation.outside+plant.temperature.big+plant.temperature.small+Average.EC+Average.Flow+Average.pH+Sum.LitersPerM2+Sum.Deviation+Sum.TotalLiters+Sum.Usage+drain.percentage+EC+pH+drain.water.amount+absorb.water.amount,
@@ -36,7 +37,7 @@ rfProbs<-predict(rfModel,type="prob")
 AUCrf<-colAUC(rfProbs,SmallMean$averageWeight,alg="ROC",plot=T)
 AUCrf
 varImpPlot(rfModel,sort=TRUE)
-
+# Cherry
 windows()
 rfModel<-randomForest(
 		averageWeight~room.temperature.inside+air.humidity+CO2.amount+radiation.outside+plant.temperature.big+plant.temperature.small+Average.EC+Average.Flow+Average.pH+Sum.LitersPerM2+Sum.Deviation+Sum.TotalLiters+Sum.Usage+drain.percentage+EC+pH+drain.water.amount+absorb.water.amount,
@@ -48,7 +49,7 @@ AUCrf
 varImpPlot(rfModel,sort=TRUE)
 
 ### Brix
-
+# Big
 windows()
 rfModel<-randomForest(
 		averageBrix~room.temperature.inside+air.humidity+CO2.amount+radiation.outside+plant.temperature.big+plant.temperature.small+Average.EC+Average.Flow+Average.pH+Sum.LitersPerM2+Sum.Deviation+Sum.TotalLiters+Sum.Usage+drain.percentage+EC+pH+drain.water.amount+absorb.water.amount,
@@ -58,7 +59,7 @@ rfProbs<-predict(rfModel,type="prob")
 AUCrf<-colAUC(rfProbs,BigMean$averageBrix,alg="ROC",plot=T)
 AUCrf
 varImpPlot(rfModel,sort=TRUE)
-
+# Prunaxx
 windows()
 rfModel<-randomForest(
 		averageBrix~room.temperature.inside+air.humidity+CO2.amount+radiation.outside+plant.temperature.big+plant.temperature.small+Average.EC+Average.Flow+Average.pH+Sum.LitersPerM2+Sum.Deviation+Sum.TotalLiters+Sum.Usage+drain.percentage+EC+pH+drain.water.amount+absorb.water.amount,
@@ -68,7 +69,7 @@ rfProbs<-predict(rfModel,type="prob")
 AUCrf<-colAUC(rfProbs,PrunaxxMean$averageBrix,alg="ROC",plot=T)
 AUCrf
 varImpPlot(rfModel,sort=TRUE)
-
+# Small
 windows()
 rfModel<-randomForest(
 		averageBrix~room.temperature.inside+air.humidity+CO2.amount+radiation.outside+plant.temperature.big+plant.temperature.small+Average.EC+Average.Flow+Average.pH+Sum.LitersPerM2+Sum.Deviation+Sum.TotalLiters+Sum.Usage+drain.percentage+EC+pH+drain.water.amount+absorb.water.amount,
@@ -78,7 +79,7 @@ rfProbs<-predict(rfModel,type="prob")
 AUCrf<-colAUC(rfProbs,SmallMean$averageBrix,alg="ROC",plot=T)
 AUCrf
 varImpPlot(rfModel,sort=TRUE)
-
+# Cherry
 windows()
 rfModel<-randomForest(
 		averageBrix~room.temperature.inside+air.humidity+CO2.amount+radiation.outside+plant.temperature.big+plant.temperature.small+Average.EC+Average.Flow+Average.pH+Sum.LitersPerM2+Sum.Deviation+Sum.TotalLiters+Sum.Usage+drain.percentage+EC+pH+drain.water.amount+absorb.water.amount,
