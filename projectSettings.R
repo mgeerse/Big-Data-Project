@@ -18,6 +18,10 @@ if(INSTALL_PACKAGES)
   install.packages("rpart.plot",repos="https://cran.hafro.is/")
   install.packages("randomForest",repos="https://cran.hafro.is/")
   install.packages("nnet",repos="https://cran.hafro.is/")
+  install.packages('ranger',repos="https://cran.hafro.is/")
+  install.packages('Boruta',repos="https://cran.hafro.is/")
+  install.packages('mice',repos="https://cran.hafro.is/")
+  install.packages("missForest",repos="https://cran.hafro.is/")
 } else {
   print("#### NOTE: Package Installing is disabled. Enable package installing in 'projectSettings.R' ####")
 }
@@ -36,6 +40,10 @@ library(e1071)
 library(rpart.plot)
 library(randomForest)
 library(nnet)
+library(ranger)
+library(Boruta)
+library(mice)
+library(missForest)
 
 # Set this to climatedata file name
 climatedatafile<-"climatedata.csv"
