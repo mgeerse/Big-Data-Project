@@ -7,75 +7,51 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-install.packages("flexdashboard")
-install.packages("shiny")
-install.packages("caTools")
-install.packages("ggplot2")
-
 library(flexdashboard)
 library(foreign)
-library(caTools)
-library(ggplot)
-library(shiny)
+library(ggplot2)
+library(corrplot)
+library(RColorBrewer)
 
 
-# plot<- ggplot() + geom_smooth(data, x, y, ...) + geom_smooth(data, x, y, ...) 
-#
-# Add ggplot
 
-#harvest_file<-file.choose()
-#growth_file<-file.choose()
-#target_file<-file.choose()
 
-climate_file<-file.choose("C:\\Users\\Teije\\Documents\\BigDataProject\\Big-Data-Project\\climatedata.csv")
 
 ```
 
 
 Growth
 =====================================
-
-Column {data-width=width .tabset}
+Column {.tabset}
 -----------------------------------------------------------------------
-
-Column {data-width=350}
+Column
 -----------------------------------------------------------------------
-### Chart A
-
-```{r}
-
-```
-
-Column {data-width=300}
+Column
 -----------------------------------------------------------------------
-
-### Chart B
-```{r}
-
-```
-Column {data-width=300}
------------------------------------------------------------------------
-
-### Chart C
-
-```{r}
-
-```
 
 Harvest
 =====================================
+```{r}
+
+```
 
 Climate & Irrigation
 =====================================
 
+
+
 Growth & Harvest (GH)
 =====================================
+
 
 GH Prediction Models
 =====================================
 
+
 Climate, Irrigation & Harvest (GIH)
 =====================================
 
+
 CIH Prediction Models
 =====================================
+

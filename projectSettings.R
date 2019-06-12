@@ -1,18 +1,26 @@
 # Projectsettings file.
 
+#Set this boolean to TRUE if you want to install the packages
+INSTALL_PACKAGES<-FALSE
+
 # Custom packages to install:
-install.packages("foreign",repos="https://cran.hafro.is/")
-install.packages("lubridate",repos="https://cran.hafro.is/")
-install.packages("ggplot2",repos="https://cran.hafro.is/")
-install.packages("dplyr",repos="https://cran.hafro.is/")
-install.packages("tidyr",repos="https://cran.hafro.is/")
-install.packages("tidyverse",repos="https://cran.hafro.is/")
-install.packages("caTools",repos="https://cran.hafro.is/")
-install.packages("rpart",repos="https://cran.hafro.is/")
-install.packages("e1071",repos="https://cran.hafro.is/")
-install.packages("rpart.plot",repos="https://cran.hafro.is/")
-install.packages("randomForest",repos="https://cran.hafro.is/")
-install.packages("nnet",repos="https://cran.hafro.is/")
+if(INSTALL_PACKAGES)
+{
+  install.packages("foreign",repos="https://cran.hafro.is/")
+  install.packages("lubridate",repos="https://cran.hafro.is/")
+  install.packages("ggplot2",repos="https://cran.hafro.is/")
+  install.packages("dplyr",repos="https://cran.hafro.is/")
+  install.packages("tidyr",repos="https://cran.hafro.is/")
+  install.packages("tidyverse",repos="https://cran.hafro.is/")
+  install.packages("caTools",repos="https://cran.hafro.is/")
+  install.packages("rpart",repos="https://cran.hafro.is/")
+  install.packages("e1071",repos="https://cran.hafro.is/")
+  install.packages("rpart.plot",repos="https://cran.hafro.is/")
+  install.packages("randomForest",repos="https://cran.hafro.is/")
+  install.packages("nnet",repos="https://cran.hafro.is/")
+} else {
+  print("#### NOTE: Package Installing is disabled. Enable package installing in 'projectSettings.R' ####")
+}
 
 # Load in packages
 library(foreign)
