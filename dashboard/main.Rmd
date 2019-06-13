@@ -14,7 +14,9 @@ rm(list=ls(all=TRUE))
 INSTALL_PACKAGES<-TRUE
 if(INSTALL_PACKAGES)
 {
+  install.packages("RTools",repos="https://cran.hafro.is/")
   install.packages("foreign",repos="https://cran.hafro.is/")
+  install.packages("class",repos="https://cran.hafro.is/")
   install.packages("lubridate",repos="https://cran.hafro.is/")
   install.packages("ggplot2",repos="https://cran.hafro.is/")
   install.packages("dplyr",repos="https://cran.hafro.is/")
@@ -30,8 +32,10 @@ if(INSTALL_PACKAGES)
   install.packages('Boruta',repos="https://cran.hafro.is/")
   install.packages('mice',repos="https://cran.hafro.is/")
   install.packages("missForest",repos="https://cran.hafro.is/")
+  install.packages("gmodels",repos="https://cran.hafro.is/")
   install.packages('MASS',repos="https://cran.hafro.is/")
   install.packages('ISLR',repos="https://cran.hafro.is/")
+  install.packages('GeNetIt',repos="https://cran.hafro.is/")
 } else {
   print("#### NOTE: Package Installing is disabled. Enable package installing in 'projectSettings.R' ####")
 }
@@ -43,11 +47,13 @@ library(tidyr)
 library(tidyverse)
 library(padr)
 library(lubridate)
+library(class)
 library(ggplot2)
 library(caTools)
 library(rpart)
 library(e1071)
 library(MASS)
+library(gmodels)
 library(ISLR)
 library(rpart.plot)
 library(randomForest)
@@ -58,6 +64,7 @@ library(mice)
 library(missForest)
 library(flexdashboard)
 library(foreign)
+library(GeNetIt)
 library(ggplot2)
 library(corrplot)
 library(RColorBrewer)
@@ -266,4 +273,22 @@ QDA
 ```{r}
 # model_QDA = qda(freshweight~., data = trainingData1)
 # print(model_QDA)
+```
+K Nearest
+=====================================
+```{r}
+# test data:
+testData<-trainingData1[1:199, ]
+testData$date<-NULL
+# train data:
+trainData<-trainingData1[200:295,]
+trainData$date<-NULL
+
+train_labels<-trainingData1[200:295,15]
+train_test_category <- trainingData1[-200,15]
+
+temp<-knn(test = testData, train = trainData, k = 10, cl = train_labels)
+
+table(train_test_category,temp)
+
 ```
