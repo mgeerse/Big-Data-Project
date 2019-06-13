@@ -415,6 +415,69 @@ result<-knn(test = testData, train = trainData, k = 10, cl = train_labels)
 ```
 Random Forest
 =====================================
+Forest {.tabset}
+-----------------------------------------------------------------------
+
+### Cherry
+
 ```{r}
+
+CherryTomaat$date<-NULL
+BigTomaat$date<-NULL
+PrunaxxTomaat$date<-NULL
+SmallTomaat$date<-NULL
+rfModel<-randomForest(
+		averageWeight~.-averageWeight-freshweight-weightperfruit-brix-diameter-fruits-plant-truss,
+		data=CherryTomaat,
+		ntree=100,importance=TRUE)
+rfProbs<-predict(rfModel,type="prob")[,"Low yield"]
+AUCrf<-colAUC(rfProbs,CherryTomaat$averageWeight,alg="ROC",plot=T)
+AUCrf
+varImpPlot(rfModel,sort=TRUE)
+
+```
+
+### Big
+
+```{r}
+
+rfModel<-randomForest(
+		averageWeight~.-averageWeight-freshweight-weightperfruit-brix-diameter-fruits-plant-truss,
+		data=BigTomaat,
+		ntree=100,importance=TRUE)
+rfProbs<-predict(rfModel,type="prob")[,"Low yield"]
+AUCrf<-colAUC(rfProbs,BigTomaat$averageWeight,alg="ROC",plot=T)
+AUCrf
+varImpPlot(rfModel,sort=TRUE)
+
+```
+
+### Prunaxx
+
+````{r}
+
+rfModel<-randomForest(
+		averageWeight~.-averageWeight-freshweight-weightperfruit-brix-diameter-fruits-plant-truss,
+		data=PrunaxxTomaat,
+		ntree=100,importance=TRUE)
+rfProbs<-predict(rfModel,type="prob")[,"Low yield"]
+AUCrf<-colAUC(rfProbs,PrunaxxTomaat$averageWeight,alg="ROC",plot=T)
+AUCrf
+varImpPlot(rfModel,sort=TRUE)
+
+```
+
+### Small
+
+```{r}
+
+rfModel<-randomForest(
+		averageWeight~.-averageWeight-freshweight-weightperfruit-brix-diameter-fruits-plant-truss,
+		data=SmallTomaat,
+		ntree=100,importance=TRUE)
+rfProbs<-predict(rfModel,type="prob")[,"Low yield"]
+AUCrf<-colAUC(rfProbs,SmallTomaat$averageWeight,alg="ROC",plot=T)
+AUCrf
+varImpPlot(rfModel,sort=TRUE)
 
 ```
