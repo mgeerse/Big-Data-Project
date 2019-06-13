@@ -11,33 +11,12 @@ output:
 rm(list=ls(all=TRUE))
 
 # Projectsettings
-INSTALL_PACKAGES<-FALSE
+INSTALL_PACKAGES<-TRUE
 if(INSTALL_PACKAGES)
 {
-  install.packages("RTools",repos="https://cran.hafro.is/")
-  install.packages("foreign",repos="https://cran.hafro.is/")
-  install.packages("class",repos="https://cran.hafro.is/")
-  install.packages("lubridate",repos="https://cran.hafro.is/")
-  install.packages("ggplot2",repos="https://cran.hafro.is/")
-  install.packages("dplyr",repos="https://cran.hafro.is/")
-  install.packages("tidyr",repos="https://cran.hafro.is/")
-  install.packages("tidyverse",repos="https://cran.hafro.is/")
-  install.packages("caTools",repos="https://cran.hafro.is/")
-  install.packages("rpart",repos="https://cran.hafro.is/")
-  install.packages("e1071",repos="https://cran.hafro.is/")
-  install.packages("rpart.plot",repos="https://cran.hafro.is/")
-  install.packages("randomForest",repos="https://cran.hafro.is/")
-  install.packages("nnet",repos="https://cran.hafro.is/")
-  install.packages('ranger',repos="https://cran.hafro.is/")
-  install.packages('Boruta',repos="https://cran.hafro.is/")
-  install.packages('mice',repos="https://cran.hafro.is/")
-  install.packages("missForest",repos="https://cran.hafro.is/")
-  install.packages("gmodels",repos="https://cran.hafro.is/")
-  install.packages('MASS',repos="https://cran.hafro.is/")
-  install.packages('ISLR',repos="https://cran.hafro.is/")
-  install.packages('GeNetIt',repos="https://cran.hafro.is/")
+install.packages(c("Boruta", "caTools", "corrplot", "dplyr", "e1071", "flexdashboard", "GeNetIt", "ggplot2", "gmodels", "ISLR", "lubridate", "mice", "missForest", "padr", "randomForest", "ranger", "RColorBrewer", "rpart.plot", "tidyr", "tidyverse"))
 } else {
-  print("#### NOTE: Package Installing is disabled. Enable package installing in 'projectSettings.R' ####")
+  print("#### NOTE: Package Installing is disabled. ####")
 }
 
 # Load in packages
@@ -203,13 +182,13 @@ system1<-merge(system1, HarvestDataToMerge, by.x="date", by.y="date")
 system2<-merge(system2, HarvestDataToMerge, by.x="date", by.y="date")
 
 CherryTomaat<-system2[system2$plant>=400&system2$plant<=411,]
-BigTommat<-system1[system1$plant>=300&system1$plant<=311,]
+BigTomaat<-system1[system1$plant>=300&system1$plant<=311,]
 PrunaxxTomaat<-system1[system1$plant>=500&system1$plant<=511,]
 SmallTomaat<-system2[system2$plant>=600&system2$plant<=611,]
 
-BigTommat$averageWeight<-ifelse(BigTommat$freshweight<mean(BigTommat$freshweight),0,1)
-BigTommat$averageWeight<-as.factor(BigTommat$averageWeight)
-levels(BigTommat$averageWeight)<-c("Low yield", "high yield")
+BigTomaat$averageWeight<-ifelse(BigTomaat$freshweight<mean(BigTomaat$freshweight),0,1)
+BigTomaat$averageWeight<-as.factor(BigTomaat$averageWeight)
+levels(BigTomaat$averageWeight)<-c("Low yield", "high yield")
 
 PrunaxxTomaat$averageWeight<-ifelse(PrunaxxTomaat$freshweight<mean(PrunaxxTomaat$freshweight),0,1)
 PrunaxxTomaat$averageWeight<-as.factor(PrunaxxTomaat$averageWeight)
