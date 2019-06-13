@@ -501,3 +501,45 @@ nnProbs<-predict(nnModel)
 AUCnn<-colAUC(nnProbs,PrunaxxTomaat$averageWeight,alg="ROC",plot=T)
 AUCnn
 ```
+
+
+SVM
+=====================================
+column {.tabset}
+-----------------------------------------------------------------------
+
+### Cherry
+
+```{r}
+m <- svm(averageWeight~. , data = CherryTomaat)
+
+print(m)
+plot(m, CherryTomaat, freshweight~drain.water.amount)
+```
+
+### Big
+
+```{r}
+m <- svm(averageWeight~., data = BigTomaat)
+
+print(m)
+plot(m, BigTomaat, freshweight~drain.water.amount)
+```
+
+### Prunaxx
+
+```{r}
+m <- svm(averageWeight~., data = PrunaxxTomaat)
+
+print(m)
+plot(m, PrunaxxTomaat, freshweight~drain.water.amount)
+```
+
+### Small
+
+```{r}
+m <- svm(averageWeight~., data = SmallTomaat)
+
+print(m)
+plot(m, SmallTomaat, freshweight~drain.water.amount)
+```
