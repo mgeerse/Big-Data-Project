@@ -428,3 +428,72 @@ Random Forest
 ```{r}
 
 ```
+
+
+
+Nnet
+=====================================
+column (.tabset)
+
+
+### Cherry
+```{r}
+CherryTomaat$date=NULL
+CherryTomaat$averagefruitss=NULL
+
+nnModel<-nnet(averageWeight~.,data=CherryTomaat,maxit=100,size=20)
+nnProbs<-predict(nnModel)
+AUCnn<-colAUC(nnProbs,CherryTomaat$averageWeight,alg="ROC",plot=T)
+AUCnn
+
+```
+
+### Small
+```{r}
+SmallTomaat$date=NULL
+SmallTomaat$averagefruitss=NULL
+
+nnModel<-nnet(averageWeight~.,data=SmallTomaat,maxit=100,size=20)
+nnProbs<-predict(nnModel)
+AUCnn<-colAUC(nnProbs,SmallTomaat$averageWeight,alg="ROC",plot=T)
+AUCnn
+
+```
+
+### Big
+```{r}
+BigTomaat$date=NULL
+BigTomaat$averagefruitss=NULL
+
+nnModel<-nnet(averageWeight~.,data=BigTomaat,maxit=100,size=20)
+nnProbs<-predict(nnModel)
+AUCnn<-colAUC(nnProbs,BigTomaat$averageWeight,alg="ROC",plot=T)
+AUCnn
+
+```
+
+
+### Prunaxx
+```{r}
+PrunaxxTomaat$date=NULL
+PrunaxxTomaat$averagefruitss=NULL
+
+nnModel<-nnet(averageWeight~.,data=PrunaxxTomaat,maxit=100,size=20)
+nnProbs<-predict(nnModel)
+AUCnn<-colAUC(nnProbs,PrunaxxTomaat$averageWeight,alg="ROC",plot=T)
+AUCnn
+
+```
+
+
+### SVM-Prunaxx
+```{r}
+classifier = svm(formula = averageWeight ~ ., 
+                 data = PrunaxxTomaat, 
+                 type = 'C-classification', 
+                 kernel = 'linear') 
+
+print(classifier)
+plot(classifier, PrunaxxTomaat,room.temperature.inside)
+
+```
