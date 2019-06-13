@@ -11,7 +11,7 @@ output:
 rm(list=ls(all=TRUE))
 
 # Projectsettings
-INSTALL_PACKAGES<-TRUE
+INSTALL_PACKAGES<-FALSE
 if(INSTALL_PACKAGES)
 {
   install.packages("RTools",repos="https://cran.hafro.is/")
@@ -175,15 +175,6 @@ HarvestData$Number.of.fruits..Number.<-NULL
 HarvestData$Weight.per.fruit..gr.<-NULL
 HarvestData$Fresh.weight..gr.<-NULL
 
-HarvestData$soort<-NULL
-HarvestData$soort[HarvestData$plant>=300&HarvestData$plant<=311]<-1
-HarvestData$soort[HarvestData$plant>=400&HarvestData$plant<=411]<-2
-HarvestData$soort[HarvestData$plant>=500&HarvestData$plant<=511]<-3
-HarvestData$soort[HarvestData$plant>=600&HarvestData$plant<=611]<-4
-HarvestData$soort<-as.factor(HarvestData$soort)
-levels(HarvestData$soort)<-c("big", "cherry", "prunaxx", "small")
-print("HarvestData cleaned up.")
-
 # Assign datatypes to ClimateData
 ClimateData$date<-as.Date(ClimateData$date,format='%d-%m-%Y')
 print("ClimateData cleaned up.")
@@ -278,7 +269,10 @@ CIH Prediction Models
 Boruta Variable Selection
 =====================================
 ```{r}
-#plotVarSelection(borutaDinges)
+plotVarSelection(borutaCherryTomaat)
+plotVarSelection(borutaBigTomaat)
+plotVarSelection(borutaPrunaxxTomaat)
+plotVarSelection(borutaSmallTomaat)
 ```
 
 Corrplot
@@ -317,5 +311,10 @@ train_test_category <- trainingData1[-200,15]
 temp<-knn(test = testData, train = trainData, k = 10, cl = train_labels)
 
 table(train_test_category,temp)
+
+```
+Random Forest
+=====================================
+```{r}
 
 ```
