@@ -14,30 +14,9 @@ rm(list=ls(all=TRUE))
 INSTALL_PACKAGES<-FALSE
 if(INSTALL_PACKAGES)
 {
-  install.packages("RTools",repos="https://cran.hafro.is/")
-  install.packages("foreign",repos="https://cran.hafro.is/")
-  install.packages("class",repos="https://cran.hafro.is/")
-  install.packages("lubridate",repos="https://cran.hafro.is/")
-  install.packages("ggplot2",repos="https://cran.hafro.is/")
-  install.packages("dplyr",repos="https://cran.hafro.is/")
-  install.packages("tidyr",repos="https://cran.hafro.is/")
-  install.packages("tidyverse",repos="https://cran.hafro.is/")
-  install.packages("caTools",repos="https://cran.hafro.is/")
-  install.packages("rpart",repos="https://cran.hafro.is/")
-  install.packages("e1071",repos="https://cran.hafro.is/")
-  install.packages("rpart.plot",repos="https://cran.hafro.is/")
-  install.packages("randomForest",repos="https://cran.hafro.is/")
-  install.packages("nnet",repos="https://cran.hafro.is/")
-  install.packages('ranger',repos="https://cran.hafro.is/")
-  install.packages('Boruta',repos="https://cran.hafro.is/")
-  install.packages('mice',repos="https://cran.hafro.is/")
-  install.packages("missForest",repos="https://cran.hafro.is/")
-  install.packages("gmodels",repos="https://cran.hafro.is/")
-  install.packages('MASS',repos="https://cran.hafro.is/")
-  install.packages('ISLR',repos="https://cran.hafro.is/")
-  install.packages('GeNetIt',repos="https://cran.hafro.is/")
+install.packages(c("Boruta", "caTools", "corrplot", "dplyr", "e1071", "flexdashboard", "GeNetIt", "ggplot2", "gmodels", "ISLR", "lubridate", "mice", "missForest", "padr", "randomForest", "ranger", "RColorBrewer", "rpart.plot", "tidyr", "tidyverse"))
 } else {
-  print("#### NOTE: Package Installing is disabled. Enable package installing in 'projectSettings.R' ####")
+  print("#### NOTE: Package Installing is disabled. ####")
 }
 
 # Load in packages
@@ -207,6 +186,22 @@ BigTomaat<-system1[system1$plant>=300&system1$plant<=311,]
 PrunaxxTomaat<-system1[system1$plant>=500&system1$plant<=511,]
 SmallTomaat<-system2[system2$plant>=600&system2$plant<=611,]
 
+BigTomaat$averageWeight<-ifelse(BigTomaat$freshweight<mean(BigTomaat$freshweight),0,1)
+BigTomaat$averageWeight<-as.factor(BigTomaat$averageWeight)
+levels(BigTomaat$averageWeight)<-c("Low yield", "high yield")
+
+PrunaxxTomaat$averageWeight<-ifelse(PrunaxxTomaat$freshweight<mean(PrunaxxTomaat$freshweight),0,1)
+PrunaxxTomaat$averageWeight<-as.factor(PrunaxxTomaat$averageWeight)
+levels(PrunaxxTomaat$averageWeight)<-c("Low yield", "high yield")
+
+SmallTomaat$averageWeight<-ifelse(SmallTomaat$freshweight<mean(SmallTomaat$freshweight),0,1)
+SmallTomaat$averageWeight<-as.factor(SmallTomaat$averageWeight)
+levels(SmallTomaat$averageWeight)<-c("Low yield", "high yield")
+
+CherryTomaat$averageWeight<-ifelse(CherryTomaat$freshweight<mean(CherryTomaat$freshweight),0,1)
+CherryTomaat$averageWeight<-as.factor(CherryTomaat$averageWeight)
+levels(CherryTomaat$averageWeight)<-c("Low yield", "high yield")
+
 borutaCherryTomaat<-trainBorutaModel(CherryTomaat)
 borutaBigTomaat<-trainBorutaModel(BigTomaat)
 borutaPrunaxxTomaat<-trainBorutaModel(PrunaxxTomaat)
@@ -250,7 +245,10 @@ CIH Prediction Models
 Boruta Variable Selection
 =====================================
 ```{r}
-#plotVarSelection(borutaDinges)
+plotVarSelection(borutaCherryTomaat)
+plotVarSelection(borutaBigTomaat)
+plotVarSelection(borutaPrunaxxTomaat)
+plotVarSelection(borutaSmallTomaat)
 ```
 
 Corrplot
@@ -331,5 +329,10 @@ train_test_category <- trainingData1[-200,15]
 temp<-knn(test = testData, train = trainData, k = 10, cl = train_labels)
 
 table(train_test_category,temp)
+
+```
+Random Forest
+=====================================
+```{r}
 
 ```
