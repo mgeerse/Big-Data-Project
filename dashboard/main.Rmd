@@ -7,15 +7,196 @@ output:
 ---
 
 ```{r setup, include=FALSE}
+rm(list=ls(all=TRUE))
+
+# Projectsettings
+INSTALL_PACKAGES<-FALSE
+if(INSTALL_PACKAGES)
+{
+  install.packages("foreign",repos="https://cran.hafro.is/")
+  install.packages("lubridate",repos="https://cran.hafro.is/")
+  install.packages("ggplot2",repos="https://cran.hafro.is/")
+  install.packages("dplyr",repos="https://cran.hafro.is/")
+  install.packages("tidyr",repos="https://cran.hafro.is/")
+  install.packages("tidyverse",repos="https://cran.hafro.is/")
+  install.packages("caTools",repos="https://cran.hafro.is/")
+  install.packages("rpart",repos="https://cran.hafro.is/")
+  install.packages("e1071",repos="https://cran.hafro.is/")
+  install.packages("rpart.plot",repos="https://cran.hafro.is/")
+  install.packages("randomForest",repos="https://cran.hafro.is/")
+  install.packages("nnet",repos="https://cran.hafro.is/")
+  install.packages('ranger',repos="https://cran.hafro.is/")
+  install.packages('Boruta',repos="https://cran.hafro.is/")
+  install.packages('mice',repos="https://cran.hafro.is/")
+  install.packages("missForest",repos="https://cran.hafro.is/")
+} else {
+  print("#### NOTE: Package Installing is disabled. Enable package installing in 'projectSettings.R' ####")
+}
+
+# Load in packages
+library(foreign)
+library(dplyr)
+library(tidyr)
+library(tidyverse)
+library(padr)
+library(lubridate)
+library(ggplot2)
+library(caTools)
+library(rpart)
+library(e1071)
+library(rpart.plot)
+library(randomForest)
+library(nnet)
+library(ranger)
+library(Boruta)
+library(mice)
+library(missForest)
 library(flexdashboard)
 library(foreign)
 library(ggplot2)
 library(corrplot)
 library(RColorBrewer)
 
+# Set this to climatedata file name
+climatedatafile<-"climatedata.csv"
+climatedataperdayfile<-"climatedataperday.csv"
 
+# Irrigation system files
+irrigation_system_1<-"irrigationsystem1.csv"
+irrigation_system_2<-"irrigationsystem2.csv"
 
+# Set this to harvestdata file name
+harvestdatafile<-"harvestdata.csv"
 
+# Customfunctions
+
+# Removes all NA's from a column then returns the mean
+MeanNoNA<-function(x){
+	x<-na.omit(x)
+	(mean(x))
+}
+
+MedianNoNA<-function(x){
+	x<-na.omit(x)
+	(median(x))
+}
+
+trainBorutaModel<-function(traindata){
+  boruta.train <- Boruta(freshweight~., data = na.omit(traindata), doTrace=0)
+  return(boruta.train)
+}
+
+# Boruta var selection
+plotVarSelection<-function(traindata){
+  plot(traindata, xlab = "", xaxt = "n")
+  lz<-lapply(1:ncol(traindata$ImpHistory),function(i)
+    traindata$ImpHistory[is.finite(traindata$ImpHistory[,i]),i])
+  names(lz) <- colnames(traindata$ImpHistory)
+  Labels <- sort(sapply(lz,median))
+  axis(side = 1,las=2,labels = names(Labels),
+       at = 1:ncol(traindata$ImpHistory), cex.axis = 0.7)
+  
+  final.boruta <- TentativeRoughFix(traindata)
+  return(final.boruta$finalDecision)
+}
+
+completeHarvestData<-function(data){
+  # Set up the traindata
+  traindata<-data
+  
+  # Introduce Missing Values Completely At Random. 0.1 staat voor afwijking
+  traindata.missing <- prodNA(traindata, noNA = 0.1)
+  
+  # Trainen kan niet met datums, weghalen
+  traindata.missing$date<-NULL
+  
+  # Overzicht van de missende data
+  # md.pattern(traindata.missing)
+  
+  # De missende data "seeden"
+  # m is het aantal booststraps, meer is langer
+  # maxit aantal iteraties, meer islanger
+  # method pmm = predictive mean matching, kan ook meer: https://www.rdocumentation.org/packages/mice/versions/2.25/topics/mice, scroll naar "pmm section"
+  imputed_Data <- mice(traindata.missing, m=5, maxit = 50, method = 'pmm', seed = 500)
+  
+  # 2 staat hier voor de boostrap nr, kan 1-10 zijn
+  completeData<-complete(imputed_Data,2)
+  
+  completeData$date<-as.Date(data$date)
+  
+  return(completeData)
+}
+
+ClimateData<-read.csv(climatedatafile, header = TRUE, dec = ",", fill=TRUE, sep=";", stringsAsFactors = FALSE, fileEncoding="UTF-8-BOM")
+print("ClimateData loaded in.")
+
+ClimateDataPerDay<-read.csv(climatedataperdayfile, header = TRUE, dec = ",", fill=TRUE, sep=";", stringsAsFactors = FALSE, fileEncoding="UTF-8-BOM")
+print("ClimateDataPerDay loaded in.")
+
+HarvestData<-read.csv(harvestdatafile, header = TRUE, dec = ",", fill = FALSE, sep=";", stringsAsFactors = FALSE, fileEncoding="UTF-8-BOM")
+print("HarvestData loaded in.")
+
+IrrigationData1<-read.csv(irrigation_system_1, header = TRUE, dec = ",", fill=TRUE, sep=";", stringsAsFactors = FALSE, fileEncoding="UTF-8-BOM")
+print("IrrigationData1 loaded in.")
+
+IrrigationData2<-read.csv(irrigation_system_2, header = TRUE, dec = ",", fill=TRUE, sep=";", stringsAsFactors = FALSE, fileEncoding="UTF-8-BOM")
+print("IrrigationData2 loaded in.")
+
+# This file serves to clean the data.
+options(digits=9)
+
+# Assign datatypes to HarvestData
+HarvestData$plant<-as.numeric(HarvestData$Plant.number)
+HarvestData$date<-as.Date(HarvestData$date,format='%d/%m/%Y')
+HarvestData$truss<-as.numeric(HarvestData$Truss.number)
+HarvestData$brix<-as.numeric(HarvestData$Brix..Number.)
+HarvestData$diameter<-as.numeric(HarvestData$Diameter.of.fruits..mm.)
+HarvestData$fruits<-as.numeric(HarvestData$Number.of.fruits..Number.)
+HarvestData$weightperfruit<-as.numeric(HarvestData$Weight.per.fruit..gr.)
+HarvestData$freshweight<-as.numeric(HarvestData$Fresh.weight..gr.)
+HarvestData$row_number<-NULL
+HarvestData$Plant.number<-NULL
+HarvestData$Truss.number<-NULL
+HarvestData$Brix..Number.<-NULL
+HarvestData$Diameter.of.fruits..mm.<-NULL
+HarvestData$Number.of.fruits..Number.<-NULL
+HarvestData$Weight.per.fruit..gr.<-NULL
+HarvestData$Fresh.weight..gr.<-NULL
+
+print("HarvestData cleaned up.")
+
+# Assign datatypes to ClimateData
+ClimateData$date<-as.Date(ClimateData$date,format='%d-%m-%Y')
+print("ClimateData cleaned up.")
+
+# Assign datatypes to ClimateDataPerDay
+ClimateDataPerDay$date<-as.Date(as.character(ClimateDataPerDay$date),format='%d-%m-%Y')
+print("ClimateData cleaned up.")
+
+# Assign datatypes to IrrigationData1
+IrrigationData1$date<-as.Date(as.character(IrrigationData1$date),format='%d-%m-%Y')
+print("IrrigationData1 cleaned up.")
+
+# Assign datatypes to IrrigationData2
+IrrigationData2$date<-as.Date(as.character(IrrigationData2$date),format='%d-%m-%Y')
+print("IrrigationData2 cleaned up.")
+
+# Merging scipt file
+# This file is made to merge klimaatdata and growth harvest data (Reformatted)
+
+system1<-merge(ClimateDataPerDay, IrrigationData1, by.x = "date", by.y = "date")
+system2<-merge(ClimateDataPerDay, IrrigationData2, by.x = "date", by.y = "date")
+
+HarvestDataToMerge<-completeHarvestData(HarvestData)
+
+system1<-merge(system1, HarvestDataToMerge, by.x="date", by.y="date")
+system2<-merge(system2, HarvestDataToMerge, by.x="date", by.y="date")
+
+trainingData1<-rbind(system1[system1$plant>=400&system1$plant<=411,], system1[system1$plant>=600&system1$plant<=611,])
+trainingData2<-rbind(system1[system2$plant>=300&system2$plant<=311,], system2[system1$plant>=500&system2$plant<=511,])
+
+borutaSystem1<-trainBorutaModel(trainingData1)
+borutaSystem2<-trainBorutaModel(trainingData2)
 
 ```
 
@@ -54,4 +235,17 @@ Climate, Irrigation & Harvest (GIH)
 
 CIH Prediction Models
 =====================================
+
+Boruta Variable Selection
+=====================================
+Irrigation 1 {.tabset}
+-----------------------------------------------------------------------
+```{r}
+plotVarSelection(borutaSystem1)
+```
+Irrigation 2
+-----------------------------------------------------------------------
+```{r}
+plotVarSelection(borutaSystem1)
+```
 
