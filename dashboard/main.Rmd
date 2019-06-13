@@ -339,7 +339,7 @@ trainData$averageWeight<-NULL
 train_labels<-SmallTomaat[120:165,15]
 train_test_category <- SmallTomaat[-120,15]
 
-temp<-knn(test = na.omit(testData), train = na.omit(trainData), k = 10, cl = na.omit(train_labels))
+result<-knn(test = na.omit(testData), train = na.omit(trainData), k = 10, cl = na.omit(train_labels))
 
 ```
 
@@ -362,7 +362,7 @@ trainData$radiation.outside<-NULL
 train_labels<-BigTomaat[60:80,15]
 train_test_category <- BigTomaat[-80,15]
 
-temp<-knn(test = testData, train = trainData, k = 10, cl = train_labels)
+result<-knn(test = testData, train = trainData, k = 8, cl = train_labels)
 
 #table(train_test_category,temp)
 ```
@@ -386,7 +386,7 @@ trainData$radiation.outside<-NULL
 train_labels<-PrunaxxTomaat[60:83,15]
 train_test_category <- PrunaxxTomaat[-60,15]
 
-temp<-knn(test = testData, train = trainData, k = 10, cl = train_labels)
+result<-knn(test = testData, train = trainData, k = 8, cl = train_labels)
 
 #table(train_test_category,temp)
 ```
@@ -409,18 +409,8 @@ trainData$radiation.outside<-NULL
 
 train_labels<-SmallTomaat[110:137,15]
 train_test_category <- SmallTomaat[-110,15]
-#testData<-trainingData1[1:199, ]
-#testData$date<-NULL
-# train data:
-#trainData<-trainingData1[200:295,]
-#trainData$date<-NULL
 
-#train_labels<-trainingData1[200:295,15]
-#train_test_category <- trainingData1[-200,15]
-
-#temp<-knn(test = testData, train = trainData, k = 10, cl = train_labels)
-
-#table(train_test_category,temp)
+result<-knn(test = testData, train = trainData, k = 10, cl = train_labels)
 
 ```
 Random Forest
