@@ -175,6 +175,13 @@ HarvestData$Number.of.fruits..Number.<-NULL
 HarvestData$Weight.per.fruit..gr.<-NULL
 HarvestData$Fresh.weight..gr.<-NULL
 
+HarvestData$soort<-NULL
+HarvestData$soort[HarvestData$plant>=300&HarvestData$plant<=311]<-1
+HarvestData$soort[HarvestData$plant>=400&HarvestData$plant<=411]<-2
+HarvestData$soort[HarvestData$plant>=500&HarvestData$plant<=511]<-3
+HarvestData$soort[HarvestData$plant>=600&HarvestData$plant<=611]<-4
+HarvestData$soort<-as.factor(HarvestData$soort)
+levels(HarvestData$soort)<-c("big", "cherry", "prunaxx", "small")
 print("HarvestData cleaned up.")
 
 # Assign datatypes to ClimateData
