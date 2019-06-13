@@ -395,7 +395,6 @@ temp<-knn(test = testData, train = trainData, k = 10, cl = train_labels)
     
 ```{r}
 # test data:
-<<<<<<< HEAD
 testData<-SmallTomaat[1:110, ]
 
 testData$date<-NULL
@@ -410,7 +409,6 @@ trainData$radiation.outside<-NULL
 
 train_labels<-SmallTomaat[110:137,15]
 train_test_category <- SmallTomaat[-110,15]
-=======
 #testData<-trainingData1[1:199, ]
 #testData$date<-NULL
 # train data:
@@ -419,7 +417,6 @@ train_test_category <- SmallTomaat[-110,15]
 
 #train_labels<-trainingData1[200:295,15]
 #train_test_category <- trainingData1[-200,15]
->>>>>>> ca63813daf6eda2865f7930bb780d703a97481fd
 
 #temp<-knn(test = testData, train = trainData, k = 10, cl = train_labels)
 
