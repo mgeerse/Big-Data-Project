@@ -262,6 +262,7 @@ Correlation {.tabset}
 temp<-CherryTomaat
 temp$date<-NULL
 temp$soort<-NULL
+temp$averageWeight<-NULL
 temp<-na.omit(temp)
 corrplot.mixed(cor(temp), tl.pos = "lt", lower = "number", upper = "shade", number.cex=0.25, order = "AOE")
 temp<-NULL
@@ -274,6 +275,7 @@ temp<-BigTomaat
 temp$date<-NULL
 temp$soort<-NULL
 temp$radiation.outside<-NULL
+temp$averageWeight<-NULL
 temp<-na.omit(temp)
 corrplot.mixed(cor(temp), tl.pos = "lt", lower = "number", upper = "shade", number.cex=0.25, order = "AOE")
 temp<-NULL
@@ -285,6 +287,7 @@ temp<-NULL
 temp<-PrunaxxTomaat
 temp$date<-NULL
 temp$soort<-NULL
+temp$averageWeight<-NULL
 temp<-na.omit(temp)
 corrplot.mixed(cor(temp), tl.pos = "lt", lower = "number", upper = "shade", number.cex=0.25, order = "AOE")
 temp<-NULL
@@ -296,6 +299,7 @@ temp<-NULL
 temp<-SmallTomaat
 temp$date<-NULL
 temp$soort<-NULL
+temp$averageWeight<-NULL
 temp<-na.omit(temp)
 corrplot.mixed(cor(temp), tl.pos = "lt", lower = "number", upper = "shade", number.cex=0.25, order = "AOE")
 temp<-NULL
@@ -391,6 +395,7 @@ temp<-knn(test = testData, train = trainData, k = 10, cl = train_labels)
     
 ```{r}
 # test data:
+<<<<<<< HEAD
 testData<-SmallTomaat[1:110, ]
 
 testData$date<-NULL
@@ -405,8 +410,18 @@ trainData$radiation.outside<-NULL
 
 train_labels<-SmallTomaat[110:137,15]
 train_test_category <- SmallTomaat[-110,15]
+=======
+#testData<-trainingData1[1:199, ]
+#testData$date<-NULL
+# train data:
+#trainData<-trainingData1[200:295,]
+#trainData$date<-NULL
 
-temp<-knn(test = testData, train = trainData, k = 10, cl = train_labels)
+#train_labels<-trainingData1[200:295,15]
+#train_test_category <- trainingData1[-200,15]
+>>>>>>> ca63813daf6eda2865f7930bb780d703a97481fd
+
+#temp<-knn(test = testData, train = trainData, k = 10, cl = train_labels)
 
 #table(train_test_category,temp)
 
