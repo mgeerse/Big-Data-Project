@@ -211,11 +211,15 @@ HarvestDataToMerge<-completeHarvestData(HarvestData)
 system1<-merge(system1, HarvestDataToMerge, by.x="date", by.y="date")
 system2<-merge(system2, HarvestDataToMerge, by.x="date", by.y="date")
 
-trainingData1<-rbind(system1[system1$plant>=400&system1$plant<=411,], system1[system1$plant>=600&system1$plant<=611,])
-trainingData2<-rbind(system1[system2$plant>=300&system2$plant<=311,], system2[system1$plant>=500&system2$plant<=511,])
+CherryTomaat<-system2[system2$plant>=400&system2$plant<=411,]
+BigTommat<-system1[system1$plant>=300&system1$plant<=311,]
+PrunaxxTomaat<-system1[system1$plant>=500&system1$plant<=511,]
+SmallTomaat<-system2[system2$plant>=600&system2$plant<=611,]
 
-borutaSystem1<-trainBorutaModel(trainingData1)
-borutaSystem2<-trainBorutaModel(trainingData2)
+borutaCherryTomaat<-trainBorutaModel(CherryTomaat)
+borutaBigTomaat<-trainBorutaModel(BigTommat)
+borutaPrunaxxTomaat<-trainBorutaModel(PrunaxxTomaat)
+borutaSmallTomaat<-trainBorutaModel(SmallTomaat)
 
 ```
 
@@ -258,7 +262,7 @@ CIH Prediction Models
 Boruta Variable Selection
 =====================================
 ```{r}
-plotVarSelection(borutaSystem1)
+#plotVarSelection(borutaDinges)
 ```
 
 Corrplot
