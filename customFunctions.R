@@ -26,7 +26,7 @@ varSelection<-function(traindata){
   return(final.boruta$finalDecision)
 }
 
-completeOurData<-function(data){
+completeHarvestData<-function(data){
   # Set up the traindata
   traindata<-data
   
@@ -47,5 +47,8 @@ completeOurData<-function(data){
   
   # 2 staat hier voor de boostrap nr, kan 1-10 zijn
   completeData<-complete(imputed_Data,2)
+  
+  completeData$date<-as.Date(data$date)
+  
   return(completeData)
 }
