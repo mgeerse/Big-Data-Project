@@ -4,13 +4,14 @@ output:
   flexdashboard::flex_dashboard:
     orientation: columns
     vertical_layout: fill
+    self_contained: FALSE
 ---
 
 ```{r setup, include=FALSE}
 rm(list=ls(all=TRUE))
 
 # Projectsettings
-INSTALL_PACKAGES<-FALSE
+INSTALL_PACKAGES<-TRUE
 if(INSTALL_PACKAGES)
 {
   install.packages("foreign",repos="https://cran.hafro.is/")
@@ -29,6 +30,8 @@ if(INSTALL_PACKAGES)
   install.packages('Boruta',repos="https://cran.hafro.is/")
   install.packages('mice',repos="https://cran.hafro.is/")
   install.packages("missForest",repos="https://cran.hafro.is/")
+  install.packages('MASS',repos="https://cran.hafro.is/")
+  install.packages('ISLR',repos="https://cran.hafro.is/")
 } else {
   print("#### NOTE: Package Installing is disabled. Enable package installing in 'projectSettings.R' ####")
 }
@@ -44,6 +47,8 @@ library(ggplot2)
 library(caTools)
 library(rpart)
 library(e1071)
+library(MASS)
+library(ISLR)
 library(rpart.plot)
 library(randomForest)
 library(nnet)
@@ -96,8 +101,8 @@ plotVarSelection<-function(traindata){
   axis(side = 1,las=2,labels = names(Labels),
        at = 1:ncol(traindata$ImpHistory), cex.axis = 0.7)
   
-  final.boruta <- TentativeRoughFix(traindata)
-  return(final.boruta$finalDecision)
+  #final.boruta <- TentativeRoughFix(traindata)
+  #return(final.boruta$finalDecision)
 }
 
 completeHarvestData<-function(data){
@@ -113,11 +118,11 @@ completeHarvestData<-function(data){
   # Overzicht van de missende data
   # md.pattern(traindata.missing)
   
-  # De missende data "seeden"
+  # De missende data seeden
   # m is het aantal booststraps, meer is langer
   # maxit aantal iteraties, meer islanger
   # method pmm = predictive mean matching, kan ook meer: https://www.rdocumentation.org/packages/mice/versions/2.25/topics/mice, scroll naar "pmm section"
-  imputed_Data <- mice(traindata.missing, m=5, maxit = 50, method = 'pmm', seed = 500)
+  imputed_Data <- mice(traindata.missing, m=5, maxit = 10, method = 'pmm', seed = 500)
   
   # 2 staat hier voor de boostrap nr, kan 1-10 zijn
   completeData<-complete(imputed_Data,2)
@@ -238,14 +243,27 @@ CIH Prediction Models
 
 Boruta Variable Selection
 =====================================
-Irrigation 1 {.tabset}
------------------------------------------------------------------------
-```{r}
-plotVarSelection(borutaSystem1)
-```
-Irrigation 2
------------------------------------------------------------------------
 ```{r}
 plotVarSelection(borutaSystem1)
 ```
 
+Corrplot
+=====================================
+```{r}
+temp<-trainingData1
+temp$date<-NULL
+corrplot.mixed(cor(temp), tl.pos = "lt", lower = "number", upper = "shade", number.cex=0.25, order = "AOE")
+temp<-NULL
+```
+LDA
+=====================================
+```{r}
+# model_LDA = lda(freshweight~., data  = trainingData1)
+# print(model_LDA)
+```
+QDA
+=====================================
+```{r}
+# model_QDA = qda(freshweight~., data = trainingData1)
+# print(model_QDA)
+```
