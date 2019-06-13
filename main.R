@@ -26,10 +26,9 @@ source("dataLoader.R")
 # Clean and aggregrate Harvest- and ClimateData.
 source("dataCleaner.R")
 
-# Merge the data
+# Merge the data.
+# Data to work with: testData1, testData2
 source("dataMerger.R")
-source("soortTomaat.R")
-source("finalDataMerge.R")
 
 # Sandbox; use this file to test your own softwarecode.
 # source("sandbox.R")
