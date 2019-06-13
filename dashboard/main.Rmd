@@ -204,41 +204,13 @@ levels(CherryTomaat$averageWeight)<-c("Low yield", "high yield")
 
 ```
 
-
-Growth
-=====================================
-Column {.tabset}
------------------------------------------------------------------------
-
-
-Harvest
-=====================================
-```{r}
-
-```
-
-Climate & Irrigation
-=====================================
-
-
-
-Growth & Harvest (GH)
-=====================================
-
-
-GH Prediction Models
-=====================================
-
-
-Climate, Irrigation & Harvest (GIH)
-=====================================
-
-
-CIH Prediction Models
-=====================================
-
 Boruta Variable Selection
 =====================================
+knn {.tabset}
+---------------------------------------------------------------------
+
+### Cherry
+
 ```{r}
 borutaCherryTomaat<-trainBorutaModel(CherryTomaat)
 borutaBigTomaat<-trainBorutaModel(BigTomaat)
@@ -246,15 +218,30 @@ borutaPrunaxxTomaat<-trainBorutaModel(PrunaxxTomaat)
 borutaSmallTomaat<-trainBorutaModel(SmallTomaat)
 
 plotVarSelection(borutaCherryTomaat)
+```
+
+### Big
+
+```{r}
 plotVarSelection(borutaBigTomaat)
+```
+
+### Prunaxx
+
+```{r}
 plotVarSelection(borutaPrunaxxTomaat)
+```
+
+### Small
+
+```{r}
 plotVarSelection(borutaSmallTomaat)
 ```
 
 Corrplot
 =====================================
 Correlation {.tabset}
------------------------------------------------------------------------
+---------------------------------------------------------------------
    
 ### Cherry
     
@@ -339,7 +326,7 @@ trainData$averageWeight<-NULL
 train_labels<-SmallTomaat[120:165,15]
 train_test_category <- SmallTomaat[-120,15]
 
-result<-knn(test = na.omit(testData), train = na.omit(trainData), k = 10, cl = na.omit(train_labels))
+result<-knn(test = na.omit(testData), train = na.omit(trainData), k = 8, cl = na.omit(train_labels))
 
 ```
 
@@ -362,7 +349,7 @@ trainData$radiation.outside<-NULL
 train_labels<-BigTomaat[60:80,15]
 train_test_category <- BigTomaat[-80,15]
 
-result<-knn(test = testData, train = trainData, k = 8, cl = train_labels)
+result<-knn(test = na.omit(testData), train = na.omit(trainData), k = 8, cl = na.omit(train_labels))
 
 #table(train_test_category,temp)
 ```
@@ -386,7 +373,7 @@ trainData$radiation.outside<-NULL
 train_labels<-PrunaxxTomaat[60:83,15]
 train_test_category <- PrunaxxTomaat[-60,15]
 
-result<-knn(test = testData, train = trainData, k = 8, cl = train_labels)
+result<-knn(test = na.omit(testData), train = na.omit(trainData), k = 8, cl = na.omit(train_labels))
 
 #table(train_test_category,temp)
 ```
@@ -396,7 +383,6 @@ result<-knn(test = testData, train = trainData, k = 8, cl = train_labels)
 ```{r}
 # test data:
 testData<-SmallTomaat[1:110, ]
-
 testData$date<-NULL
 testData$averageWeight<-NULL
 testData$radiation.outside<-NULL
@@ -410,7 +396,7 @@ trainData$radiation.outside<-NULL
 train_labels<-SmallTomaat[110:137,15]
 train_test_category <- SmallTomaat[-110,15]
 
-result<-knn(test = testData, train = trainData, k = 10, cl = train_labels)
+result<-knn(test = na.omit(testData), train = na.omit(trainData), k = 8, cl = na.omit(train_labels))
 
 ```
 Random Forest
