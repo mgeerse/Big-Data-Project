@@ -202,11 +202,6 @@ CherryTomaat$averageWeight<-ifelse(CherryTomaat$freshweight<mean(CherryTomaat$fr
 CherryTomaat$averageWeight<-as.factor(CherryTomaat$averageWeight)
 levels(CherryTomaat$averageWeight)<-c("Low yield", "high yield")
 
-borutaCherryTomaat<-trainBorutaModel(CherryTomaat)
-borutaBigTomaat<-trainBorutaModel(BigTomaat)
-borutaPrunaxxTomaat<-trainBorutaModel(PrunaxxTomaat)
-borutaSmallTomaat<-trainBorutaModel(SmallTomaat)
-
 ```
 
 
@@ -245,6 +240,11 @@ CIH Prediction Models
 Boruta Variable Selection
 =====================================
 ```{r}
+borutaCherryTomaat<-trainBorutaModel(CherryTomaat)
+borutaBigTomaat<-trainBorutaModel(BigTomaat)
+borutaPrunaxxTomaat<-trainBorutaModel(PrunaxxTomaat)
+borutaSmallTomaat<-trainBorutaModel(SmallTomaat)
+
 plotVarSelection(borutaCherryTomaat)
 plotVarSelection(borutaBigTomaat)
 plotVarSelection(borutaPrunaxxTomaat)
@@ -315,20 +315,100 @@ QDA
 ```
 K Nearest
 =====================================
+
+knn {.tabset}
+-----------------------------------------------------------------------
+### Cherry
+    
 ```{r}
 # test data:
-testData<-trainingData1[1:199, ]
+testData<-CherryTomaat[1:120, ]
 testData$date<-NULL
-# train data:
-trainData<-trainingData1[200:295,]
-trainData$date<-NULL
+testData$averageWeight<-NULL
 
-train_labels<-trainingData1[200:295,15]
-train_test_category <- trainingData1[-200,15]
+
+# train data:
+trainData<-SmallTomaat[120:165,]
+trainData$date<-NULL
+trainData$averageWeight<-NULL
+
+train_labels<-SmallTomaat[120:165,15]
+train_test_category <- SmallTomaat[-120,15]
+
+temp<-knn(test = na.omit(testData), train = na.omit(trainData), k = 10, cl = na.omit(train_labels))
+
+```
+
+### Big
+    
+```{r}
+# test data:
+testData<-BigTomaat[1:60,]
+testData$date<-NULL
+testData$averageWeight<-NULL
+testData$radiation.outside<-NULL
+
+
+# train data:
+trainData<-BigTomaat[60:80,]
+trainData$date<-NULL
+trainData$averageWeight<-NULL
+trainData$radiation.outside<-NULL
+
+train_labels<-BigTomaat[60:80,15]
+train_test_category <- BigTomaat[-80,15]
 
 temp<-knn(test = testData, train = trainData, k = 10, cl = train_labels)
 
-table(train_test_category,temp)
+#table(train_test_category,temp)
+```
+
+### Prunaxx
+    
+```{r}
+# test data:
+testData<-PrunaxxTomaat[1:60, ]
+testData$date<-NULL
+testData$averageWeight<-NULL
+testData$radiation.outside<-NULL
+
+
+# train data:
+trainData<-PrunaxxTomaat[60:83,]
+trainData$date<-NULL
+trainData$averageWeight<-NULL
+trainData$radiation.outside<-NULL
+
+train_labels<-PrunaxxTomaat[60:83,15]
+train_test_category <- PrunaxxTomaat[-60,15]
+
+temp<-knn(test = testData, train = trainData, k = 10, cl = train_labels)
+
+#table(train_test_category,temp)
+```
+
+### Small
+    
+```{r}
+# test data:
+testData<-SmallTomaat[1:110, ]
+
+testData$date<-NULL
+testData$averageWeight<-NULL
+testData$radiation.outside<-NULL
+
+# train data:
+trainData<-SmallTomaat[110:137,]
+trainData$date<-NULL
+trainData$averageWeight<-NULL
+trainData$radiation.outside<-NULL
+
+train_labels<-SmallTomaat[110:137,15]
+train_test_category <- SmallTomaat[-110,15]
+
+temp<-knn(test = testData, train = trainData, k = 10, cl = train_labels)
+
+#table(train_test_category,temp)
 
 ```
 Random Forest
