@@ -11,7 +11,7 @@ output:
 rm(list=ls(all=TRUE))
 
 # Projectsettings
-INSTALL_PACKAGES<-TRUE
+INSTALL_PACKAGES<-FALSE
 if(INSTALL_PACKAGES)
 {
   install.packages("RTools",repos="https://cran.hafro.is/")
@@ -175,15 +175,6 @@ HarvestData$Number.of.fruits..Number.<-NULL
 HarvestData$Weight.per.fruit..gr.<-NULL
 HarvestData$Fresh.weight..gr.<-NULL
 
-HarvestData$soort<-NULL
-HarvestData$soort[HarvestData$plant>=300&HarvestData$plant<=311]<-1
-HarvestData$soort[HarvestData$plant>=400&HarvestData$plant<=411]<-2
-HarvestData$soort[HarvestData$plant>=500&HarvestData$plant<=511]<-3
-HarvestData$soort[HarvestData$plant>=600&HarvestData$plant<=611]<-4
-HarvestData$soort<-as.factor(HarvestData$soort)
-levels(HarvestData$soort)<-c("big", "cherry", "prunaxx", "small")
-print("HarvestData cleaned up.")
-
 # Assign datatypes to ClimateData
 ClimateData$date<-as.Date(ClimateData$date,format='%d-%m-%Y')
 print("ClimateData cleaned up.")
@@ -212,12 +203,12 @@ system1<-merge(system1, HarvestDataToMerge, by.x="date", by.y="date")
 system2<-merge(system2, HarvestDataToMerge, by.x="date", by.y="date")
 
 CherryTomaat<-system2[system2$plant>=400&system2$plant<=411,]
-BigTommat<-system1[system1$plant>=300&system1$plant<=311,]
+BigTomaat<-system1[system1$plant>=300&system1$plant<=311,]
 PrunaxxTomaat<-system1[system1$plant>=500&system1$plant<=511,]
 SmallTomaat<-system2[system2$plant>=600&system2$plant<=611,]
 
 borutaCherryTomaat<-trainBorutaModel(CherryTomaat)
-borutaBigTomaat<-trainBorutaModel(BigTommat)
+borutaBigTomaat<-trainBorutaModel(BigTomaat)
 borutaPrunaxxTomaat<-trainBorutaModel(PrunaxxTomaat)
 borutaSmallTomaat<-trainBorutaModel(SmallTomaat)
 
@@ -228,10 +219,7 @@ Growth
 =====================================
 Column {.tabset}
 -----------------------------------------------------------------------
-Column
------------------------------------------------------------------------
-Column
------------------------------------------------------------------------
+
 
 Harvest
 =====================================
@@ -267,12 +255,54 @@ Boruta Variable Selection
 
 Corrplot
 =====================================
+Correlation {.tabset}
+-----------------------------------------------------------------------
+   
+### Cherry
+    
 ```{r}
-temp<-trainingData1
+temp<-CherryTomaat
 temp$date<-NULL
+temp$soort<-NULL
+temp<-na.omit(temp)
 corrplot.mixed(cor(temp), tl.pos = "lt", lower = "number", upper = "shade", number.cex=0.25, order = "AOE")
 temp<-NULL
 ```
+
+### Big
+    
+```{r}
+temp<-BigTomaat
+temp$date<-NULL
+temp$soort<-NULL
+temp$radiation.outside<-NULL
+temp<-na.omit(temp)
+corrplot.mixed(cor(temp), tl.pos = "lt", lower = "number", upper = "shade", number.cex=0.25, order = "AOE")
+temp<-NULL
+```
+
+### Prunaxx
+    
+```{r}
+temp<-PrunaxxTomaat
+temp$date<-NULL
+temp$soort<-NULL
+temp<-na.omit(temp)
+corrplot.mixed(cor(temp), tl.pos = "lt", lower = "number", upper = "shade", number.cex=0.25, order = "AOE")
+temp<-NULL
+```
+
+### Small
+    
+```{r}
+temp<-SmallTomaat
+temp$date<-NULL
+temp$soort<-NULL
+temp<-na.omit(temp)
+corrplot.mixed(cor(temp), tl.pos = "lt", lower = "number", upper = "shade", number.cex=0.25, order = "AOE")
+temp<-NULL
+```
+
 LDA
 =====================================
 ```{r}
