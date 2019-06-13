@@ -216,6 +216,22 @@ BigTommat<-system1[system1$plant>=300&system1$plant<=311,]
 PrunaxxTomaat<-system1[system1$plant>=500&system1$plant<=511,]
 SmallTomaat<-system2[system2$plant>=600&system2$plant<=611,]
 
+BigTommat$averageWeight<-ifelse(BigTommat$freshweight<mean(BigTommat$freshweight),0,1)
+BigTommat$averageWeight<-as.factor(BigTommat$averageWeight)
+levels(BigTommat$averageWeight)<-c("Low yield", "high yield")
+
+PrunaxxTomaat$averageWeight<-ifelse(PrunaxxTomaat$freshweight<mean(PrunaxxTomaat$freshweight),0,1)
+PrunaxxTomaat$averageWeight<-as.factor(PrunaxxTomaat$averageWeight)
+levels(PrunaxxTomaat$averageWeight)<-c("Low yield", "high yield")
+
+SmallTomaat$averageWeight<-ifelse(SmallTomaat$freshweight<mean(SmallTomaat$freshweight),0,1)
+SmallTomaat$averageWeight<-as.factor(SmallTomaat$averageWeight)
+levels(SmallTomaat$averageWeight)<-c("Low yield", "high yield")
+
+CherryTomaat$averageWeight<-ifelse(CherryTomaat$freshweight<mean(CherryTomaat$freshweight),0,1)
+CherryTomaat$averageWeight<-as.factor(CherryTomaat$averageWeight)
+levels(CherryTomaat$averageWeight)<-c("Low yield", "high yield")
+
 borutaCherryTomaat<-trainBorutaModel(CherryTomaat)
 borutaBigTomaat<-trainBorutaModel(BigTommat)
 borutaPrunaxxTomaat<-trainBorutaModel(PrunaxxTomaat)
