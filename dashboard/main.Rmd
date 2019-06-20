@@ -80,6 +80,7 @@ trainBorutaModel<-function(traindata){
 
 # Boruta var selection
 plotVarSelection<-function(traindata){
+  traindata$averageWeight<-NULL
   plot(traindata, xlab = "", xaxt = "n")
   lz<-lapply(1:ncol(traindata$ImpHistory),function(i)
     traindata$ImpHistory[is.finite(traindata$ImpHistory[,i]),i])
@@ -88,7 +89,7 @@ plotVarSelection<-function(traindata){
   axis(side = 1,las=2,labels = names(Labels),
        at = 1:ncol(traindata$ImpHistory), cex.axis = 0.7)
   
-  #final.boruta <- TentativeRoughFix(traindata)
+  TentativeRoughFix(traindata)
   #return(final.boruta$finalDecision)
 }
 
@@ -385,6 +386,7 @@ FlowTableBig=data.frame(BigTomaat$date,BigTomaat$Average.Flow,BigTomaat$freshwei
 FlowTableBig <- melt(FlowTableBig, id.vars =c("BigTomaat.date"))
 #normalizebigtomaat stops here
 
+<<<<<<< HEAD
 # normalize data CherryTomaat
 
 CherryTomaat$room.temperature.inside<-(CherryTomaat$room.temperature.inside-min(CherryTomaat$room.temperature.inside))/(max(CherryTomaat$room.temperature.inside)-min(CherryTomaat$room.temperature.inside))
@@ -567,10 +569,22 @@ FlowTablePrunaxx <- melt(FlowTablePrunaxx, id.vars =c("PrunaxxTomaat.date"))
 
 #Prunaxx tomaat stops here
 
-borutaCherryTomaat<-trainBorutaModel(CherryTomaat)
-borutaBigTomaat<-trainBorutaModel(BigTomaat)
-borutaPrunaxxTomaat<-trainBorutaModel(PrunaxxTomaat)
-borutaSmallTomaat<-trainBorutaModel(SmallTomaat)
+
+borutaTrainData<-CherryTomaat
+borutaTrainData$averageWeight<-NULL
+borutaCherryTomaat<-trainBorutaModel(borutaTrainData)
+
+borutaTrainData<-BigTomaat
+borutaTrainData$averageWeight<-NULL
+borutaBigTomaat<-trainBorutaModel(borutaTrainData)
+
+borutaTrainData<-PrunaxxTomaat
+borutaTrainData$averageWeight<-NULL
+borutaPrunaxxTomaat<-trainBorutaModel(borutaTrainData)
+
+borutaTrainData<-SmallTomaat
+borutaTrainData$averageWeight<-NULL
+borutaSmallTomaat<-trainBorutaModel(borutaTrainData)
 
 ```
 
@@ -617,6 +631,9 @@ temp<-CherryTomaat
 temp$date<-NULL
 temp$soort<-NULL
 temp$averageWeight<-NULL
+temp$radiation.outside<-NULL
+temp$plant<-NULL
+temp$truss<-NULL
 temp<-na.omit(temp)
 corrplot.mixed(cor(temp), tl.pos = "lt", lower = "number", upper = "shade", number.cex=0.25, order = "AOE")
 temp<-NULL
@@ -628,8 +645,10 @@ temp<-NULL
 temp<-BigTomaat
 temp$date<-NULL
 temp$soort<-NULL
-temp$radiation.outside<-NULL
 temp$averageWeight<-NULL
+temp$radiation.outside<-NULL
+temp$plant<-NULL
+temp$truss<-NULL
 temp<-na.omit(temp)
 test<-cor(temp)
 corrplot.mixed(test, tl.pos = "lt", lower = "number", upper = "shade", number.cex=0.25, order = "AOE")
@@ -643,6 +662,9 @@ temp<-PrunaxxTomaat
 temp$date<-NULL
 temp$soort<-NULL
 temp$averageWeight<-NULL
+temp$radiation.outside<-NULL
+temp$plant<-NULL
+temp$truss<-NULL
 temp<-na.omit(temp)
 corrplot.mixed(cor(temp), tl.pos = "lt", lower = "number", upper = "shade", number.cex=0.25, order = "AOE")
 temp<-NULL
@@ -655,6 +677,9 @@ temp<-SmallTomaat
 temp$date<-NULL
 temp$soort<-NULL
 temp$averageWeight<-NULL
+temp$radiation.outside<-NULL
+temp$plant<-NULL
+temp$truss<-NULL
 temp<-na.omit(temp)
 corrplot.mixed(cor(temp), tl.pos = "lt", lower = "number", upper = "shade", number.cex=0.25, order = "AOE")
 temp<-NULL
