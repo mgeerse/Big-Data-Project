@@ -385,6 +385,188 @@ FlowTableBig=data.frame(BigTomaat$date,BigTomaat$Average.Flow,BigTomaat$freshwei
 FlowTableBig <- melt(FlowTableBig, id.vars =c("BigTomaat.date"))
 #normalizebigtomaat stops here
 
+# normalize data CherryTomaat
+
+CherryTomaat$room.temperature.inside<-(CherryTomaat$room.temperature.inside-min(CherryTomaat$room.temperature.inside))/(max(CherryTomaat$room.temperature.inside)-min(CherryTomaat$room.temperature.inside))
+CherryTomaat$air.humidity<-(CherryTomaat$air.humidity-min(CherryTomaat$air.humidity))/(max(CherryTomaat$air.humidity)-min(CherryTomaat$air.humidity))
+
+CherryTomaat$CO2.amount<-(CherryTomaat$CO2.amount-min(CherryTomaat$CO2.amount))/(max(CherryTomaat$CO2.amount)-min(CherryTomaat$CO2.amount))
+
+CherryTomaat$plant.temperature.big<-(CherryTomaat$plant.temperature.big-min(CherryTomaat$plant.temperature.big))/(max(CherryTomaat$plant.temperature.big)-min(CherryTomaat$plant.temperature.big))
+
+
+CherryTomaat$Average.EC<-(CherryTomaat$Average.EC-min(CherryTomaat$Average.EC))/(max(CherryTomaat$Average.EC)-min(CherryTomaat$Average.EC))
+
+CherryTomaat$Average.Flow<-(CherryTomaat$Average.Flow-min(CherryTomaat$Average.Flow))/(max(CherryTomaat$Average.Flow)-min(CherryTomaat$Average.Flow))
+
+CherryTomaat$Sum.LitersPerM2<-(CherryTomaat$Sum.LitersPerM2-min(CherryTomaat$Sum.LitersPerM2))/(max(CherryTomaat$Sum.LitersPerM2)-min(CherryTomaat$Sum.LitersPerM2))
+
+CherryTomaat$Sum.Deviation<-(CherryTomaat$Sum.Deviation-min(CherryTomaat$Sum.Deviation))/(max(CherryTomaat$Sum.Deviation)-min(CherryTomaat$Sum.Deviation))
+
+CherryTomaat$Sum.TotalLiters<-(CherryTomaat$Sum.TotalLiters-min(CherryTomaat$Sum.TotalLiters))/(max(CherryTomaat$Sum.TotalLiters)-min(CherryTomaat$Sum.TotalLiters))
+
+CherryTomaat$Sum.Usage<-(CherryTomaat$Sum.Usage-min(CherryTomaat$Sum.Usage))/(max(CherryTomaat$Sum.Usage)-min(CherryTomaat$Sum.Usage))
+
+CherryTomaat$drain.percentage<-(CherryTomaat$drain.percentage-min(CherryTomaat$drain.percentage))/(max(CherryTomaat$drain.percentage)-min(CherryTomaat$drain.percentage))
+
+CherryTomaat$EC<-(CherryTomaat$EC-min(CherryTomaat$EC))/(max(CherryTomaat$EC)-min(CherryTomaat$EC))
+CherryTomaat$drain.water.amount<-(CherryTomaat$drain.water.amount-min(CherryTomaat$drain.water.amount))/(max(CherryTomaat$drain.water.amount)-min(CherryTomaat$drain.water.amount))
+
+CherryTomaat$absorb.water.amount<-(CherryTomaat$absorb.water.amount-min(CherryTomaat$absorb.water.amount))/(max(CherryTomaat$absorb.water.amount)-min(CherryTomaat$absorb.water.amount))
+
+CherryTomaat$truss<-(CherryTomaat$truss-min(CherryTomaat$truss))/(max(CherryTomaat$truss)-min(CherryTomaat$truss))
+
+CherryTomaat$brix<-(CherryTomaat$brix-min(CherryTomaat$brix))/(max(CherryTomaat$brix)-min(CherryTomaat$brix))
+
+CherryTomaat$fruits<-(CherryTomaat$fruits-min(CherryTomaat$fruits))/(max(CherryTomaat$fruits)-min(CherryTomaat$fruits))
+
+CherryTomaat$weightperfruit<-(CherryTomaat$weightperfruit-min(CherryTomaat$weightperfruit))/(max(CherryTomaat$weightperfruit)-min(CherryTomaat$weightperfruit))
+CherryTomaat$drain.water.amount<-(CherryTomaat$drain.water.amount-min(CherryTomaat$drain.water.amount))/(max(CherryTomaat$drain.water.amount)-min(CherryTomaat$drain.water.amount))
+
+CherryTomaat$pH<-(CherryTomaat$pH-min(CherryTomaat$pH))/(max(CherryTomaat$pH)-min(CherryTomaat$pH))
+
+CherryTomaat$diameter<-(CherryTomaat$diameter-min(CherryTomaat$diameter))/(max(CherryTomaat$diameter)-min(CherryTomaat$diameter))
+
+CherryTomaat$freshweight<-(CherryTomaat$freshweight-min(CherryTomaat$freshweight))/(max(CherryTomaat$freshweight)-min(CherryTomaat$freshweight))
+
+
+# set data in new variable drain vs freshweight
+DrainTableCherry=data.frame(CherryTomaat$date,CherryTomaat$drain.water.amount,CherryTomaat$freshweight)
+
+DrainTableCherry <- melt(DrainTableCherry, id.vars =c("CherryTomaat.date"))
+
+# set data in new variable drain vs freshweight
+DiameterTableCherry=data.frame(CherryTomaat$date,CherryTomaat$diameter,CherryTomaat$freshweight)
+
+DiameterTableCherry <- melt(DiameterTableCherry, id.vars =c("CherryTomaat.date"))
+
+
+# set data in new variable ph vs diameter
+phTableCherry=data.frame(CherryTomaat$date,CherryTomaat$diameter,CherryTomaat$pH)
+
+phTableCherry <- melt(phTableCherry, id.vars =c("CherryTomaat.date"))
+
+
+# set data in new variable ph vs diameter
+RoomTepTableCherry=data.frame(CherryTomaat$date,CherryTomaat$room.temperature.inside,CherryTomaat$freshweight)
+
+RoomTepTableCherry <- melt(RoomTepTableCherry, id.vars =c("CherryTomaat.date"))
+
+# set data in new variable ph vs diameter
+PhVSTempinsideTableCherry=data.frame(CherryTomaat$date,CherryTomaat$room.temperature.inside,CherryTomaat$pH)
+
+PhVSTempinsideTableCherry <- melt(PhVSTempinsideTableCherry, id.vars =c("CherryTomaat.date"))
+
+# set data in new variable ph vs diameter
+litersTableCherry=data.frame(CherryTomaat$date,CherryTomaat$Sum.LitersPerM2,CherryTomaat$freshweight)
+
+litersTableCherry <- melt(litersTableCherry, id.vars =c("CherryTomaat.date"))
+
+EcTableCherry=data.frame(CherryTomaat$date,CherryTomaat$EC,CherryTomaat$pH)
+
+EcTableCherry <- melt(EcTableCherry, id.vars =c("CherryTomaat.date"))
+
+AbsorbTableCherry=data.frame(CherryTomaat$date,CherryTomaat$absorb.water.amount,CherryTomaat$brix)
+
+AbsorbTableCherry <- melt(AbsorbTableCherry, id.vars =c("CherryTomaat.date"))
+
+FlowTableCherry=data.frame(CherryTomaat$date,CherryTomaat$Average.Flow,CherryTomaat$freshweight)
+
+FlowTableCherry <- melt(FlowTableCherry, id.vars =c("CherryTomaat.date"))
+
+#cherry tomaat stops here
+
+# normalize data PrunaxxTomaat
+
+PrunaxxTomaat$room.temperature.inside<-(PrunaxxTomaat$room.temperature.inside-min(PrunaxxTomaat$room.temperature.inside))/(max(PrunaxxTomaat$room.temperature.inside)-min(PrunaxxTomaat$room.temperature.inside))
+PrunaxxTomaat$air.humidity<-(PrunaxxTomaat$air.humidity-min(PrunaxxTomaat$air.humidity))/(max(PrunaxxTomaat$air.humidity)-min(PrunaxxTomaat$air.humidity))
+
+PrunaxxTomaat$CO2.amount<-(PrunaxxTomaat$CO2.amount-min(PrunaxxTomaat$CO2.amount))/(max(PrunaxxTomaat$CO2.amount)-min(PrunaxxTomaat$CO2.amount))
+
+PrunaxxTomaat$plant.temperature.big<-(PrunaxxTomaat$plant.temperature.big-min(PrunaxxTomaat$plant.temperature.big))/(max(PrunaxxTomaat$plant.temperature.big)-min(PrunaxxTomaat$plant.temperature.big))
+
+
+PrunaxxTomaat$Average.EC<-(PrunaxxTomaat$Average.EC-min(PrunaxxTomaat$Average.EC))/(max(PrunaxxTomaat$Average.EC)-min(PrunaxxTomaat$Average.EC))
+
+PrunaxxTomaat$Average.Flow<-(PrunaxxTomaat$Average.Flow-min(PrunaxxTomaat$Average.Flow))/(max(PrunaxxTomaat$Average.Flow)-min(PrunaxxTomaat$Average.Flow))
+
+PrunaxxTomaat$Sum.LitersPerM2<-(PrunaxxTomaat$Sum.LitersPerM2-min(PrunaxxTomaat$Sum.LitersPerM2))/(max(PrunaxxTomaat$Sum.LitersPerM2)-min(PrunaxxTomaat$Sum.LitersPerM2))
+
+PrunaxxTomaat$Sum.Deviation<-(PrunaxxTomaat$Sum.Deviation-min(PrunaxxTomaat$Sum.Deviation))/(max(PrunaxxTomaat$Sum.Deviation)-min(PrunaxxTomaat$Sum.Deviation))
+
+PrunaxxTomaat$Sum.TotalLiters<-(PrunaxxTomaat$Sum.TotalLiters-min(PrunaxxTomaat$Sum.TotalLiters))/(max(PrunaxxTomaat$Sum.TotalLiters)-min(PrunaxxTomaat$Sum.TotalLiters))
+
+PrunaxxTomaat$Sum.Usage<-(PrunaxxTomaat$Sum.Usage-min(PrunaxxTomaat$Sum.Usage))/(max(PrunaxxTomaat$Sum.Usage)-min(PrunaxxTomaat$Sum.Usage))
+
+PrunaxxTomaat$drain.percentage<-(PrunaxxTomaat$drain.percentage-min(PrunaxxTomaat$drain.percentage))/(max(PrunaxxTomaat$drain.percentage)-min(PrunaxxTomaat$drain.percentage))
+
+PrunaxxTomaat$EC<-(PrunaxxTomaat$EC-min(PrunaxxTomaat$EC))/(max(PrunaxxTomaat$EC)-min(PrunaxxTomaat$EC))
+PrunaxxTomaat$drain.water.amount<-(PrunaxxTomaat$drain.water.amount-min(PrunaxxTomaat$drain.water.amount))/(max(PrunaxxTomaat$drain.water.amount)-min(PrunaxxTomaat$drain.water.amount))
+
+PrunaxxTomaat$absorb.water.amount<-(PrunaxxTomaat$absorb.water.amount-min(PrunaxxTomaat$absorb.water.amount))/(max(PrunaxxTomaat$absorb.water.amount)-min(PrunaxxTomaat$absorb.water.amount))
+
+PrunaxxTomaat$truss<-(PrunaxxTomaat$truss-min(PrunaxxTomaat$truss))/(max(PrunaxxTomaat$truss)-min(PrunaxxTomaat$truss))
+
+PrunaxxTomaat$brix<-(PrunaxxTomaat$brix-min(PrunaxxTomaat$brix))/(max(PrunaxxTomaat$brix)-min(PrunaxxTomaat$brix))
+
+PrunaxxTomaat$fruits<-(PrunaxxTomaat$fruits-min(PrunaxxTomaat$fruits))/(max(PrunaxxTomaat$fruits)-min(PrunaxxTomaat$fruits))
+
+PrunaxxTomaat$weightperfruit<-(PrunaxxTomaat$weightperfruit-min(PrunaxxTomaat$weightperfruit))/(max(PrunaxxTomaat$weightperfruit)-min(PrunaxxTomaat$weightperfruit))
+PrunaxxTomaat$drain.water.amount<-(PrunaxxTomaat$drain.water.amount-min(PrunaxxTomaat$drain.water.amount))/(max(PrunaxxTomaat$drain.water.amount)-min(PrunaxxTomaat$drain.water.amount))
+
+PrunaxxTomaat$pH<-(PrunaxxTomaat$pH-min(PrunaxxTomaat$pH))/(max(PrunaxxTomaat$pH)-min(PrunaxxTomaat$pH))
+
+PrunaxxTomaat$diameter<-(PrunaxxTomaat$diameter-min(PrunaxxTomaat$diameter))/(max(PrunaxxTomaat$diameter)-min(PrunaxxTomaat$diameter))
+
+PrunaxxTomaat$freshweight<-(PrunaxxTomaat$freshweight-min(PrunaxxTomaat$freshweight))/(max(PrunaxxTomaat$freshweight)-min(PrunaxxTomaat$freshweight))
+
+
+# set data in new variable drain vs freshweight
+DrainTablePrunaxx=data.frame(PrunaxxTomaat$date,PrunaxxTomaat$drain.water.amount,PrunaxxTomaat$freshweight)
+
+DrainTablePrunaxx <- melt(DrainTablePrunaxx, id.vars =c("PrunaxxTomaat.date"))
+
+# set data in new variable drain vs freshweight
+DiameterTablePrunaxx=data.frame(PrunaxxTomaat$date,PrunaxxTomaat$diameter,PrunaxxTomaat$freshweight)
+
+DiameterTablePrunaxx <- melt(DiameterTablePrunaxx, id.vars =c("PrunaxxTomaat.date"))
+
+
+# set data in new variable ph vs diameter
+phTablePrunaxx=data.frame(PrunaxxTomaat$date,PrunaxxTomaat$diameter,PrunaxxTomaat$pH)
+
+phTablePrunaxx <- melt(phTablePrunaxx, id.vars =c("PrunaxxTomaat.date"))
+
+
+# set data in new variable ph vs diameter
+RoomTepTablePrunaxx=data.frame(PrunaxxTomaat$date,PrunaxxTomaat$room.temperature.inside,PrunaxxTomaat$freshweight)
+
+RoomTepTablePrunaxx <- melt(RoomTepTablePrunaxx, id.vars =c("PrunaxxTomaat.date"))
+
+# set data in new variable ph vs diameter
+PhVSTempinsideTablePrunaxx=data.frame(PrunaxxTomaat$date,PrunaxxTomaat$room.temperature.inside,PrunaxxTomaat$pH)
+
+PhVSTempinsideTablePrunaxx <- melt(PhVSTempinsideTablePrunaxx, id.vars =c("PrunaxxTomaat.date"))
+
+# set data in new variable ph vs diameter
+litersTablePrunaxx=data.frame(PrunaxxTomaat$date,PrunaxxTomaat$Sum.LitersPerM2,PrunaxxTomaat$freshweight)
+
+litersTablePrunaxx <- melt(litersTablePrunaxx, id.vars =c("PrunaxxTomaat.date"))
+
+EcTablePrunaxx=data.frame(PrunaxxTomaat$date,PrunaxxTomaat$EC,PrunaxxTomaat$pH)
+
+EcTablePrunaxx <- melt(EcTablePrunaxx, id.vars =c("PrunaxxTomaat.date"))
+
+AbsorbTablePrunaxx=data.frame(PrunaxxTomaat$date,PrunaxxTomaat$absorb.water.amount,PrunaxxTomaat$brix)
+
+AbsorbTablePrunaxx <- melt(AbsorbTablePrunaxx, id.vars =c("PrunaxxTomaat.date"))
+
+FlowTablePrunaxx=data.frame(PrunaxxTomaat$date,PrunaxxTomaat$Average.Flow,PrunaxxTomaat$freshweight)
+
+FlowTablePrunaxx <- melt(FlowTablePrunaxx, id.vars =c("PrunaxxTomaat.date"))
+
+#Prunaxx tomaat stops here
+
 borutaCherryTomaat<-trainBorutaModel(CherryTomaat)
 borutaBigTomaat<-trainBorutaModel(BigTomaat)
 borutaPrunaxxTomaat<-trainBorutaModel(PrunaxxTomaat)
@@ -723,7 +905,6 @@ plot(m, PrunaxxTomaat, freshweight~drain.water.amount)
 ```{r}
 m <- svm(averageWeight~., data = SmallTomaat)
 
-print(m)
 plot(m, SmallTomaat, freshweight~drain.water.amount)
 ```
 
@@ -796,4 +977,69 @@ ggplot(AbsorbTableBig, aes(x = BigTomaat.date, y = value, colour = variable)) +
 ggplot(FlowTableBig, aes(x = BigTomaat.date, y = value, colour = variable)) + 
     geom_smooth() + geom_point()
 
+```
+
+### Cherrytomato
+
+```{r}
+# GGplot pH and Brix
+ggplot(phTableCherry, aes(x = CherryTomaat.date, y = value, colour = variable)) + 
+    geom_smooth() + geom_point()
+
+ggplot(DrainTableCherry, aes(x = CherryTomaat.date, y = value, colour = variable)) + 
+    geom_smooth() + geom_point()
+
+ggplot(DiameterTableCherry, aes(x = CherryTomaat.date, y = value, colour = variable)) + 
+    geom_smooth() + geom_point()
+
+ggplot(RoomTepTableCherry, aes(x = CherryTomaat.date, y = value, colour = variable)) + 
+    geom_smooth() + geom_point()
+
+ggplot(PhVSTempinsideTableCherry, aes(x = CherryTomaat.date, y = value, colour = variable)) + 
+    geom_smooth() + geom_point()
+
+ggplot(litersTableCherry, aes(x = CherryTomaat.date, y = value, colour = variable)) + 
+    geom_smooth() + geom_point()
+
+ggplot(EcTableCherry, aes(x = CherryTomaat.date, y = value, colour = variable)) + 
+    geom_smooth() + geom_point()
+
+ggplot(AbsorbTableCherry, aes(x = CherryTomaat.date, y = value, colour = variable)) + 
+    geom_smooth() + geom_point()
+
+ggplot(FlowTableCherry, aes(x = CherryTomaat.date, y = value, colour = variable)) + 
+    geom_smooth() + geom_point()
+
+```
+
+### Prunaxxtomato
+
+```{r}
+# GGplot pH and Brix
+ggplot(phTablePrunaxx, aes(x = PrunaxxTomaat.date, y = value, colour = variable)) + 
+    geom_smooth() + geom_point()
+
+ggplot(DrainTablePrunaxx, aes(x = PrunaxxTomaat.date, y = value, colour = variable)) + 
+    geom_smooth() + geom_point()
+
+ggplot(DiameterTablePrunaxx, aes(x = PrunaxxTomaat.date, y = value, colour = variable)) + 
+    geom_smooth() + geom_point()
+
+ggplot(RoomTepTablePrunaxx, aes(x = PrunaxxTomaat.date, y = value, colour = variable)) + 
+    geom_smooth() + geom_point()
+
+ggplot(PhVSTempinsideTablePrunaxx, aes(x = PrunaxxTomaat.date, y = value, colour = variable)) + 
+    geom_smooth() + geom_point()
+
+ggplot(litersTablePrunaxx, aes(x = PrunaxxTomaat.date, y = value, colour = variable)) + 
+    geom_smooth() + geom_point()
+
+ggplot(EcTablePrunaxx, aes(x = PrunaxxTomaat.date, y = value, colour = variable)) + 
+    geom_smooth() + geom_point()
+
+ggplot(AbsorbTablePrunaxx, aes(x = PrunaxxTomaat.date, y = value, colour = variable)) + 
+    geom_smooth() + geom_point()
+
+ggplot(FlowTablePrunaxx, aes(x = PrunaxxTomaat.date, y = value, colour = variable)) + 
+    geom_smooth() + geom_point()
 ```
