@@ -386,7 +386,6 @@ FlowTableBig=data.frame(BigTomaat$date,BigTomaat$Average.Flow,BigTomaat$freshwei
 FlowTableBig <- melt(FlowTableBig, id.vars =c("BigTomaat.date"))
 #normalizebigtomaat stops here
 
-<<<<<<< HEAD
 # normalize data CherryTomaat
 
 CherryTomaat$room.temperature.inside<-(CherryTomaat$room.temperature.inside-min(CherryTomaat$room.temperature.inside))/(max(CherryTomaat$room.temperature.inside)-min(CherryTomaat$room.temperature.inside))
@@ -965,11 +964,7 @@ plot(m, PrunaxxTomaat, freshweight~CO2.amount)
 plot(m, PrunaxxTomaat, freshweight~plant.temperature.big)
 plot(m, PrunaxxTomaat, freshweight~drain.percentage)
 
-<<<<<<< HEAD
 temp<-NULL
-=======
-plot(m, SmallTomaat, freshweight~drain.water.amount)
->>>>>>> 5c4ae9a4079b8fb2e5dbade48c93a28c024ae050
 ```
 
 GGplots
