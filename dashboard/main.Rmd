@@ -287,6 +287,14 @@ EcTableSmall=data.frame(SmallTomaat$date,SmallTomaat$EC,SmallTomaat$pH)
 
 EcTableSmall <- melt(EcTableSmall, id.vars =c("SmallTomaat.date"))
 
+AbsorbTableSmall=data.frame(SmallTomaat$date,SmallTomaat$absorb.water.amount,SmallTomaat$brix)
+
+AbsorbTableSmall <- melt(AbsorbTableSmall, id.vars =c("SmallTomaat.date"))
+
+FlowTableSmall=data.frame(SmallTomaat$date,SmallTomaat$Average.Flow,SmallTomaat$freshweight)
+
+FlowTableSmall <- melt(FlowTableSmall, id.vars =c("SmallTomaat.date"))
+
 # normalize data bigTomaat
 
 BigTomaat$room.temperature.inside<-(BigTomaat$room.temperature.inside-min(BigTomaat$room.temperature.inside))/(max(BigTomaat$room.temperature.inside)-min(BigTomaat$room.temperature.inside))
@@ -367,6 +375,14 @@ litersTableBig <- melt(litersTableBig, id.vars =c("BigTomaat.date"))
 EcTableBig=data.frame(BigTomaat$date,BigTomaat$EC,BigTomaat$pH)
 
 EcTableBig <- melt(EcTableBig, id.vars =c("BigTomaat.date"))
+
+AbsorbTableBig=data.frame(BigTomaat$date,BigTomaat$absorb.water.amount,BigTomaat$brix)
+
+AbsorbTableBig <- melt(AbsorbTableBig, id.vars =c("BigTomaat.date"))
+
+FlowTableBig=data.frame(BigTomaat$date,BigTomaat$Average.Flow,BigTomaat$freshweight)
+
+FlowTableBig <- melt(FlowTableBig, id.vars =c("BigTomaat.date"))
 #normalizebigtomaat stops here
 
 borutaCherryTomaat<-trainBorutaModel(CherryTomaat)
@@ -741,6 +757,12 @@ ggplot(EcTableSmall, aes(x = SmallTomaat.date, y = value, colour = variable)) +
     geom_smooth() + geom_point()
 
 
+ggplot(AbsorbTableSmall, aes(x = SmallTomaat.date, y = value, colour = variable)) + 
+    geom_smooth() + geom_point()
+
+ggplot(FlowTableSmall, aes(x = SmallTomaat.date, y = value, colour = variable)) + 
+    geom_smooth() + geom_point()
+
 ```
 
 ### Bigtomato
@@ -768,5 +790,10 @@ ggplot(litersTableBig, aes(x = BigTomaat.date, y = value, colour = variable)) +
 ggplot(EcTableBig, aes(x = BigTomaat.date, y = value, colour = variable)) + 
     geom_smooth() + geom_point()
 
+ggplot(AbsorbTableBig, aes(x = BigTomaat.date, y = value, colour = variable)) + 
+    geom_smooth() + geom_point()
+
+ggplot(FlowTableBig, aes(x = BigTomaat.date, y = value, colour = variable)) + 
+    geom_smooth() + geom_point()
 
 ```
