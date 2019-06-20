@@ -611,7 +611,7 @@ BigTomaat$date<-NULL
 PrunaxxTomaat$date<-NULL
 SmallTomaat$date<-NULL
 rfModel<-randomForest(
-		averageWeight~.-averageWeight-freshweight-weightperfruit-brix-diameter-fruits-plant-truss,
+		averageWeight~.-averageWeight-freshweight-weightperfruit-brix-diameter-fruits,
 		data=CherryTomaat,
 		ntree=100,importance=TRUE)
 rfProbs<-predict(rfModel,type="prob")[,"Low yield"]
@@ -626,7 +626,7 @@ varImpPlot(rfModel,sort=TRUE)
 ```{r}
 
 rfModel<-randomForest(
-		averageWeight~.-averageWeight-freshweight-weightperfruit-brix-diameter-fruits-plant-truss,
+		averageWeight~.-averageWeight,
 		data=BigTomaat,
 		ntree=100,importance=TRUE)
 rfProbs<-predict(rfModel,type="prob")[,"Low yield"]
@@ -641,7 +641,7 @@ varImpPlot(rfModel,sort=TRUE)
 ````{r}
 
 rfModel<-randomForest(
-		averageWeight~.-averageWeight-freshweight-weightperfruit-brix-diameter-fruits-plant-truss,
+		averageWeight~.-averageWeight-freshweight-weightperfruit-brix-diameter-fruits,
 		data=PrunaxxTomaat,
 		ntree=100,importance=TRUE)
 rfProbs<-predict(rfModel,type="prob")[,"Low yield"]
@@ -656,7 +656,7 @@ varImpPlot(rfModel,sort=TRUE)
 ```{r}
 
 rfModel<-randomForest(
-		averageWeight~.-averageWeight-freshweight-weightperfruit-brix-diameter-fruits-plant-truss,
+		averageWeight~.-averageWeight-freshweight-weightperfruit-brix-diameter-fruits,
 		data=SmallTomaat,
 		ntree=100,importance=TRUE)
 rfProbs<-predict(rfModel,type="prob")[,"Low yield"]
@@ -675,7 +675,8 @@ column {.tabset}
 ```{r}
 CherryTomaat$date=NULL
 CherryTomaat$averagefruitss=NULL
-nnModel<-nnet(averageWeight~.,data=CherryTomaat,maxit=100,size=20)
+nnModel<-nnet(averageWeight~.-averageWeight-freshweight-weightperfruit-brix-diameter-fruits,
+              data=CherryTomaat,maxit=100,size=20)
 nnProbs<-predict(nnModel)
 AUCnn<-colAUC(nnProbs,CherryTomaat$averageWeight,alg="ROC",plot=T)
 AUCnn
@@ -685,7 +686,8 @@ AUCnn
 ```{r}
 SmallTomaat$date=NULL
 SmallTomaat$averagefruitss=NULL
-nnModel<-nnet(averageWeight~.,data=SmallTomaat,maxit=100,size=20)
+nnModel<-nnet(averageWeight~.-averageWeight-freshweight-weightperfruit-brix-diameter-fruits
+              ,data=SmallTomaat,maxit=100,size=20)
 nnProbs<-predict(nnModel)
 AUCnn<-colAUC(nnProbs,SmallTomaat$averageWeight,alg="ROC",plot=T)
 AUCnn
@@ -737,18 +739,50 @@ plot(m, BigTomaat, freshweight~drain.water.amount)
 ### Prunaxx
 
 ```{r}
-m <- svm(averageWeight~., data = PrunaxxTomaat)
+temp<-PrunaxxTomaat
+temp$radiation.outside<-NULL
+temp$freshweight<-NULL
+temp$weightperfruit<-NULL
+temp$brix<-NULL
+temp$diameter<-NULL
+temp$fruits<-NULL
+temp$freshweight<-NULL
 
-plot(m, PrunaxxTomaat, freshweight~drain.water.amount)
+m <- svm(averageWeight~., data = temp)
+
+plot(m, PrunaxxTomaat, freshweight~EC)
+plot(m, PrunaxxTomaat, freshweight~pH)
+plot(m, PrunaxxTomaat, freshweight~room.temperature.inside)
+plot(m, PrunaxxTomaat, freshweight~air.humidity)
+plot(m, PrunaxxTomaat, freshweight~CO2.amount)
+plot(m, PrunaxxTomaat, freshweight~plant.temperature.big)
+plot(m, PrunaxxTomaat, freshweight~drain.percentage)
+temp<-NULL
 ```
 
 ### SmallTomato
 
 ```{r}
-m <- svm(averageWeight~., data = SmallTomaat)
+temp<-SmallTomaat
+temp$radiation.outside<-NULL
+temp$freshweight<-NULL
+temp$weightperfruit<-NULL
+temp$brix<-NULL
+temp$diameter<-NULL
+temp$fruits<-NULL
+temp$freshweight<-NULL
 
-print(m)
-plot(m, SmallTomaat, freshweight~drain.water.amount)
+m <- svm(averageWeight~., data = temp)
+
+plot(m, PrunaxxTomaat, freshweight~EC)
+plot(m, PrunaxxTomaat, freshweight~pH)
+plot(m, PrunaxxTomaat, freshweight~room.temperature.inside)
+plot(m, PrunaxxTomaat, freshweight~air.humidity)
+plot(m, PrunaxxTomaat, freshweight~CO2.amount)
+plot(m, PrunaxxTomaat, freshweight~plant.temperature.big)
+plot(m, PrunaxxTomaat, freshweight~drain.percentage)
+
+temp<-NULL
 ```
 
 GGplots
